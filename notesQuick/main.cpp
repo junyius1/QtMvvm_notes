@@ -2,6 +2,7 @@
 #include <QtQml/QQmlApplicationEngine>
 #include <notesapp.h>
 #include <mainviewmodel.h>
+#include "quickpresenter.h"
 
 QTMVVM_REGISTER_CORE_APP(notesApp)
 

@@ -1,7 +1,7 @@
 #ifndef MAINVIEWMODEL_H
 #define MAINVIEWMODEL_H
 
-#include <QtMvvmCore/ViewModel>
+#include "viewmodel.h"
 
 class MainViewModel : public QtMvvm::ViewModel
 {

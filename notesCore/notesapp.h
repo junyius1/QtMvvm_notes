@@ -1,7 +1,7 @@
 #ifndef NOTESAPP_H
 #define NOTESAPP_H
 
-#include <QtMvvmCore/CoreApp>
+#include "coreapp.h"
 
 class notesApp : public QtMvvm::CoreApp
 {

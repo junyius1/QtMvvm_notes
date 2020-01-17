@@ -1,0 +1,29 @@
+<RCC>
+    <qresource prefix="/qtmvvm/inputs">
+        <file>ListEdit.qml</file>
+        <file>TextField.qml</file>
+        <file>SpinBox.qml</file>
+        <file>CheckBox.qml</file>
+        <file>DoubleSpinBox.qml</file>
+        <file>FontEdit.qml</file>
+        <file>UrlField.qml</file>
+        <file>Switch.qml</file>
+        <file>RadioListEdit.qml</file>
+        <file>Slider.qml</file>
+        <file>TimeEdit.qml</file>
+        <file>DateEdit.qml</file>
+        <file>DateTimeEdit.qml</file>
+        <file>ColorEdit.qml</file>
+    </qresource>
+    <qresource prefix="/qtmvvm/delegates">
+        <file>BoolDelegate.qml</file>
+        <file>MsgDelegate.qml</file>
+        <file>SwitchDelegate.qml</file>
+        <file>ListDelegate.qml</file>
+        <file>RangeDelegate.qml</file>
+        <file>ColorDelegate.qml</file>
+    </qresource>
+    <qresource prefix="/qtmvvm/views">
+        <file>SettingsView.qml</file>
+    </qresource>
+</RCC>
