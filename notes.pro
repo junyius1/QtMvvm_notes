@@ -10,3 +10,5 @@ SUBDIRS += \
         notesCore \
 
 notesQuick.depends += notesCore
+
+DISTFILES += .qmake.conf

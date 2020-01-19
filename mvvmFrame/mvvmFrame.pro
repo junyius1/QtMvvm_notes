@@ -1,7 +1,8 @@
 TEMPLATE = subdirs
 
 SUBDIRS += mvvmcore \
-        mvvmquick
+        mvvmquick \
+        imports
 
 mvvmwidgets.depends += mvvmcore
 #imports.CONFIG += no_lrelease_target
