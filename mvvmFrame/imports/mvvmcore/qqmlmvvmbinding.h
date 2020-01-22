@@ -7,7 +7,7 @@
 #include "binding.h"
 
 #ifdef DOXYGEN_RUN
-namespace de::skycoder42::QtMvvm::Core {
+namespace de::framework::QtMvvm::Core {
 
 /*! @brief A QML class to create a local mvvm multiway binding
  *

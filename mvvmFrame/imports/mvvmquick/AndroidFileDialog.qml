@@ -1,6 +1,6 @@
 import QtQuick 2.10
-import de.skycoder42.QtMvvm.Core 1.1
-import de.skycoder42.QtMvvm.Quick 1.1
+import de.framework.QtMvvm.Core 1.1
+import de.framework.QtMvvm.Quick 1.1
 
 FileChooser {
 	id: _fileChooser

@@ -3,7 +3,7 @@ import QtQuick.Controls 2.3
 import QtQuick.Controls.Material 2.3
 import QtQuick.Controls.Universal 2.3
 import QtQuick.Layouts 1.3
-import de.skycoder42.QtMvvm.Quick 1.1 as QtMvvm
+import de.framework.QtMvvm.Quick 1.1 as QtMvvm
 
 ColumnLayout {
 	id: _edit

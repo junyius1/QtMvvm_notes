@@ -17,7 +17,7 @@
 
 static void qtMvvmQuickInit()
 {
-	qmlRegisterType<QUrlValidator>("de.skycoder42.QtMvvm.Quick.Private", 1, 0, "UrlValidator");
+	qmlRegisterType<QUrlValidator>("de.framework.QtMvvm.Quick.Private", 1, 0, "UrlValidator");
 	QtMvvm::ServiceRegistry::instance()->registerObject<QtMvvm::InputViewFactory>(QtMvvm::ServiceRegistry::DestroyOnAppDestroy, true);
 	QtMvvm::ServiceRegistry::instance()->registerInterface<QtMvvm::IPresenter, QtMvvm::QuickPresenter>(QtMvvm::ServiceRegistry::DestroyOnAppDestroy, true);
 }

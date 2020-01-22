@@ -9,7 +9,7 @@
 #include <QtQml/QQmlComponent>
 
 #ifdef DOXYGEN_RUN
-namespace de::skycoder42::QtMvvm::Core {
+namespace de::framework::QtMvvm::Core {
 
 /*! @brief A QML singleton to access some QtMvvm::ServiceRegistry functionality
  *

@@ -1,7 +1,7 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
-import de.skycoder42.QtMvvm.Core 1.1
-import de.skycoder42.QtMvvm.Quick 1.1
+import de.framework.QtMvvm.Core 1.1
+import de.framework.QtMvvm.Quick 1.1
 
 /*! @brief A presentation helper that can present generic mvvm dialogs
  *

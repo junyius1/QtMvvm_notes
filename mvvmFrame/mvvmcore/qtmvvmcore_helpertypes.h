@@ -12,7 +12,7 @@
 namespace QtMvvm {
 namespace __helpertypes {
 
-static const QByteArray InjectablePrefix = QByteArrayLiteral("de.skycoder42.qtmvvm.injectable.");
+static const QByteArray InjectablePrefix = QByteArrayLiteral("de.framework.qtmvvm.injectable.");
 
 template <typename T>
 struct is_qobj : public std::is_base_of<QObject, T> {};

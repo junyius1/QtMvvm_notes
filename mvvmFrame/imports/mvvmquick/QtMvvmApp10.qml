@@ -1,6 +1,6 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
-import de.skycoder42.QtMvvm.Quick 1.0
+import de.framework.QtMvvm.Quick 1.0
 
 /*! @brief An application root window that is a full fledged QML presenter
  *

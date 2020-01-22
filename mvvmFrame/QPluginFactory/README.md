@@ -33,7 +33,7 @@ public:
 	virtual MyClass *createInstance(const QString &key) = 0;
 };
 
-#define IMyPluginIID "de.skycoder42.qpluginloader.sample.IMyPlugin"
+#define IMyPluginIID "de.framework.qpluginloader.sample.IMyPlugin"
 Q_DECLARE_INTERFACE(IMyPlugin, IMyPluginIID)
 ```
 

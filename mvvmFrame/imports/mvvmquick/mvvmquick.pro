@@ -1,12 +1,12 @@
 QT += core qml quick svg quickcontrols2
 CXX_MODULE = mvvmquick
-TARGETPATH = de/skycoder42/QtMvvm/Quick
+TARGETPATH = de/framework/QtMvvm/Quick
 TARGET  = declarative_mvvmquick
 IMPORT_VERSION = $$MODULE_VERSION_IMPORT
 DEFINES += "VERSION_MAJOR=$$MODULE_VERSION_MAJOR"
 DEFINES += "VERSION_MINOR=$$MODULE_VERSION_MINOR"
 
-DESTDIR = ../../../qml/de/skycoder42/QtMvvm/Quick/
+DESTDIR = ../../../qml/de/framework/QtMvvm/Quick/
 
 TEMPLATE = lib
 

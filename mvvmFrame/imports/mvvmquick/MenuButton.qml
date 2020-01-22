@@ -1,6 +1,6 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
-import de.skycoder42.QtMvvm.Quick 1.1
+import de.framework.QtMvvm.Quick 1.1
 
 /*! @brief An extension of the ActionButton to provide a simple "more menu" button
  *
@@ -28,7 +28,7 @@ import de.skycoder42.QtMvvm.Quick 1.1
 ActionButton {
 	id: _menuButton
 	icon.name: "view-more-symbolic"
-	icon.source: "qrc:/de/skycoder42/qtmvvm/quick/icons/ic_more_vert.svg"
+	icon.source: "qrc:/de/framework/qtmvvm/quick/icons/ic_more_vert.svg"
 	text: qsTr("More…")
 	checkable: true
 	checked: _moreMenu.visible

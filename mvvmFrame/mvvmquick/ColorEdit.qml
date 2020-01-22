@@ -1,4 +1,4 @@
-import de.skycoder42.QtMvvm.Quick 1.1 as QtMvvm
+import de.framework.QtMvvm.Quick 1.1 as QtMvvm
 
 QtMvvm.ColorEdit {
 	id: _edit

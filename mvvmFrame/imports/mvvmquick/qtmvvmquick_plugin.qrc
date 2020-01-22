@@ -1,5 +1,5 @@
 <RCC>
-    <qresource prefix="/de/skycoder42/qtmvvm/quick/icons">
+    <qresource prefix="/de/framework/qtmvvm/quick/icons">
         <file alias="ic_error.svg">icons/ic_error_white_24px.svg</file>
         <file alias="ic_help.svg">icons/ic_help_white_24px.svg</file>
         <file alias="ic_info.svg">icons/ic_info_white_24px.svg</file>
@@ -12,13 +12,13 @@
         <file alias="ic_navigate_before.svg">icons/ic_navigate_before_white_24px.svg</file>
         <file alias="ic_navigate_next.svg">icons/ic_navigate_next_white_24px.svg</file>
     </qresource>
-    <qresource prefix="/de/skycoder42/qtmvvm/quick/qml">
+    <qresource prefix="/de/framework/qtmvvm/quick/qml">
         <file>FileDialog.qml</file>
         <file>FolderDialog.qml</file>
         <file>AndroidFileDialog.qml</file>
         <file>AndroidFolderDialog.qml</file>
     </qresource>
-    <qresource prefix="/de/skycoder42/qtmvvm/icons">
+    <qresource prefix="/de/framework/qtmvvm/icons">
         <file alias="settings.svg">icons/ic_settings_white_24px.svg</file>
     </qresource>
 </RCC>

@@ -1,12 +1,12 @@
 QT += core qml quick
 CXX_MODULE = mvvmcore
-TARGETPATH = de/skycoder42/QtMvvm/Core
+TARGETPATH = de/framework/QtMvvm/Core
 TARGET  = declarative_mvvmcore
 IMPORT_VERSION = $$MODULE_VERSION_IMPORT
 DEFINES += "VERSION_MAJOR=$$MODULE_VERSION_MAJOR"
 DEFINES += "VERSION_MINOR=$$MODULE_VERSION_MINOR"
 
-DESTDIR = ../../../qml/de/skycoder42/QtMvvm/Core/
+DESTDIR = ../../../qml/de/framework/QtMvvm/Core/
 
 INCLUDEPATH += $$PWD/../../mvvmcore
 

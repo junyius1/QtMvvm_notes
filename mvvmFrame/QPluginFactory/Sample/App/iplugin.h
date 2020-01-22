@@ -18,7 +18,7 @@ Q_SIGNALS:
 	virtual void pong(const QString &result) = 0;
 };
 
-#define IPluginIid "de.skycoder42.qpluginloader.sample.IPlugin"
+#define IPluginIid "de.framework.qpluginloader.sample.IPlugin"
 Q_DECLARE_INTERFACE(IPlugin, IPluginIid)
 
 #endif // IPLUGIN_H

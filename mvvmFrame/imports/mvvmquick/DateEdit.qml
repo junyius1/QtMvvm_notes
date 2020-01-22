@@ -2,7 +2,7 @@ import QtQuick 2.10
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 import Qt.labs.calendar 1.0
-import de.skycoder42.QtMvvm.Quick 1.1
+import de.framework.QtMvvm.Quick 1.1
 
 /*! @brief A edit view to edit dates by using a calendar
  *
@@ -106,7 +106,7 @@ ListView {
 			flat: true
 
 			icon.name: "go-previous"
-			icon.source: "qrc:/de/skycoder42/qtmvvm/quick/icons/ic_navigate_before.svg"
+			icon.source: "qrc:/de/framework/qtmvvm/quick/icons/ic_navigate_before.svg"
 			icon.width: 24
 			icon.height: 24
 
@@ -128,7 +128,7 @@ ListView {
 			flat: true
 
 			icon.name: "go-next"
-			icon.source: "qrc:/de/skycoder42/qtmvvm/quick/icons/ic_navigate_next.svg"
+			icon.source: "qrc:/de/framework/qtmvvm/quick/icons/ic_navigate_next.svg"
 			icon.width: 24
 			icon.height: 24
 

@@ -10,7 +10,7 @@
 #include "message.h"
 
 #ifdef DOXYGEN_RUN
-namespace de::skycoder42::QtMvvm::Core {
+namespace de::framework::QtMvvm::Core {
 
 /*! @brief A QML signelton to access the QtMvvm namespace methods for showing simple dialogs
  *

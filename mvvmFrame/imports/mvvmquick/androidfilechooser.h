@@ -9,7 +9,7 @@
 #include <QtAndroidExtras/QAndroidJniObject>
 
 #ifdef DOXYGEN_RUN
-namespace de::skycoder42::QtMvvm::Quick {
+namespace de::framework::QtMvvm::Quick {
 
 /*! @brief A QML class access the native file chooser on android
  *

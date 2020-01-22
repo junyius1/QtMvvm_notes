@@ -161,7 +161,7 @@ AndroidSettingsAccessorPrivate::AndroidSettingsAccessorPrivate(AndroidSettingsAc
 	setup();
 	QAndroidJniExceptionCleaner cleaner{QAndroidJniExceptionCleaner::OutputMode::Verbose};
 	settings = QAndroidJniObject {
-		"de/skycoder42/qtmvvm/core/AndroidSettingsAccessor",
+		"de/framework/qtmvvm/core/AndroidSettingsAccessor",
 		"(Landroid/content/Context;J)V",
 		QtAndroid::androidContext().object(),
 		reinterpret_cast<jlong>(this)
@@ -174,7 +174,7 @@ AndroidSettingsAccessorPrivate::AndroidSettingsAccessorPrivate(AndroidSettingsAc
 	setup();
 	QAndroidJniExceptionCleaner cleaner{QAndroidJniExceptionCleaner::OutputMode::Verbose};
 	settings = QAndroidJniObject {
-		"de/skycoder42/qtmvvm/core/AndroidSettingsAccessor",
+		"de/framework/qtmvvm/core/AndroidSettingsAccessor",
 		"(Landroid/content/Context;Ljava/lang/String;IJ)V",
 		QtAndroid::androidContext().object(),
 		QAndroidJniObject::fromString(file).object(),

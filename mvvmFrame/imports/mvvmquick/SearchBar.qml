@@ -1,7 +1,7 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
-import de.skycoder42.QtMvvm.Quick 1.1
+import de.framework.QtMvvm.Quick 1.1
 
 /*! @brief A ToolBarLabel with a search button next to it, that can turn into a searchbar
  *
@@ -166,7 +166,7 @@ Item {
 			PropertyChanges {
 				target: _searchButton
 				icon.name: "search"
-				icon.source: "qrc:/de/skycoder42/qtmvvm/quick/icons/ic_search.svg"
+				icon.source: "qrc:/de/framework/qtmvvm/quick/icons/ic_search.svg"
 			}
 			PropertyChanges {
 				target: _titleLabel
@@ -187,7 +187,7 @@ Item {
 			PropertyChanges {
 				target: _searchButton
 				icon.name: "gtk-close"
-				icon.source: "qrc:/de/skycoder42/qtmvvm/quick/icons/ic_close.svg"
+				icon.source: "qrc:/de/framework/qtmvvm/quick/icons/ic_close.svg"
 			}
 			PropertyChanges {
 				target: _titleLabel

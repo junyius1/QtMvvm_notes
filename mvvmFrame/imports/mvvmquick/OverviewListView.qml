@@ -1,7 +1,7 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
-import de.skycoder42.QtMvvm.Quick 1.1
+import de.framework.QtMvvm.Quick 1.1
 
 ListView {
 	id: _sectionListView
@@ -62,7 +62,7 @@ ListView {
 
 			TintIcon {
 				id: openIcon
-				icon.source: "qrc:/de/skycoder42/qtmvvm/quick/icons/ic_chevron_right.svg"
+				icon.source: "qrc:/de/framework/qtmvvm/quick/icons/ic_chevron_right.svg"
 				Layout.row: 0
 				Layout.column: 2
 				Layout.rowSpan: 2

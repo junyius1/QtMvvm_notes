@@ -39,7 +39,7 @@ QtMvvmCoreDeclarativeModule::QtMvvmCoreDeclarativeModule(QObject *parent) :
 
 void QtMvvmCoreDeclarativeModule::registerTypes(const char *uri)
 {
-	Q_ASSERT(qstrcmp(uri, "de.skycoder42.QtMvvm.Core") == 0);
+	Q_ASSERT(qstrcmp(uri, "de.framework.QtMvvm.Core") == 0);
 
 	//Version 1.0
     qmlRegisterUncreatableType<QtMvvm::MessageConfig>(uri, 1, 0, "MessageConfig", QStringLiteral("Q_GADGETS cannot be created from QML"));

@@ -6,7 +6,7 @@
 #include "viewmodel.h"
 
 #ifdef DOXYGEN_RUN
-namespace de::skycoder42::QtMvvm::Quick {
+namespace de::framework::QtMvvm::Quick {
 
 /*!
  * @brief A placeholder item to show a view within another view

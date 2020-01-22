@@ -48,7 +48,7 @@ public:
 }
 
 //! The IID of the QtMvvm::IPresenter class
-#define QtMvvm_IPresenterIid "de.skycoder42.qtmvvm.core.IPresenter"
+#define QtMvvm_IPresenterIid "de.framework.qtmvvm.core.IPresenter"
 Q_DECLARE_INTERFACE(QtMvvm::IPresenter, QtMvvm_IPresenterIid)
 Q_DECLARE_METATYPE(QtMvvm::IPresenter*)
 

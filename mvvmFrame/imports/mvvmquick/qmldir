@@ -1,4 +1,4 @@
-module de.skycoder42.QtMvvm.Quick
+module de.framework.QtMvvm.Quick
 plugin declarative_mvvmquick
 classname QtMvvmQuickDeclarativeModule
 typeinfo plugins.qmltypes
@@ -6,7 +6,7 @@ depends QtQuick 2.10
 depends QtGraphicalEffects 1.0
 depends Qt.labs.platform 1.0
 depends Qt.labs.calendar 1.0
-depends de.skycoder42.QtMvvm.Core 1.0
+depends de.framework.QtMvvm.Core 1.0
 
 internal MsgBoxBase MsgBoxBase.qml
 internal MsgBox MsgBox.qml

@@ -1,8 +1,8 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
-import de.skycoder42.QtMvvm.Core 1.1
-import de.skycoder42.QtMvvm.Quick 1.1
+import de.framework.QtMvvm.Core 1.1
+import de.framework.QtMvvm.Quick 1.1
 
 /*! @brief The view implementation for the QtMvvm::SettingsViewModel
  *
@@ -80,7 +80,7 @@ Page {
 			ActionButton {
 				id: _restoreButton
 				visible: _builder.allowRestore
-				icon.source: "qrc:/de/skycoder42/qtmvvm/quick/icons/ic_settings_backup_restore.svg"
+				icon.source: "qrc:/de/framework/qtmvvm/quick/icons/ic_settings_backup_restore.svg"
 				text: qsTr("Restore settings")
 				onClicked: _builder.restoreDefaults()
 			}
