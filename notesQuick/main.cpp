@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<MainViewModel>("com.example.notes", 1, 0, "MainViewModel", "ViewModels cannot be created!");
 
     QQmlApplicationEngine engine;
+    engine.addImportPath((QStringLiteral("../qml")));
     engine.load(QUrl(QStringLiteral("qrc:/App.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;
