@@ -46,7 +46,14 @@ else:unix: LIBS += -L$$OUT_PWD/../mvvmFrame/mvvmquick/ -lQtMvvmQuick
 DEPENDPATH += $$PWD/../mvvmFrame/mvvmquick
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH =
+QML_IMPORT_PATH = $$OUT_PWD/../qml/
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =
+
+
+android {
+ANDROID_EXTRA_LIBS += \
+    $$OUT_PWD/../mvvmFrame/mvvmcore/libQtMvvmCore.so \
+    $$OUT_PWD/../mvvmFrame/mvvmquick/libQtMvvmQuick.so
+}
