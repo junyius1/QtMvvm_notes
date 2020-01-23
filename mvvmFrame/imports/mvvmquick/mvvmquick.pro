@@ -92,8 +92,13 @@ else:unix: LIBS += -L$$OUT_PWD/../../mvvmquick/ -lQtMvvmQuick
 
 DEPENDPATH += $$PWD/../../mvvmquick
 
+WINPWD =$$PWD
+WINOUTPWD =$$DESTDIR
+
+win32{
 WINPWD = $$replace(PWD, "\/", "\\")
 WINOUTPWD = $$replace(DESTDIR, "\/", "\\")
+}
 
 QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD\*.qml $$WINOUTPWD &&
 QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD\qmldir $$WINOUTPWD

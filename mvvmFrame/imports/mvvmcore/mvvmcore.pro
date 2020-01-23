@@ -38,8 +38,13 @@ win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../mvvmcore/release
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../mvvmcore/debug/ -lQtMvvmCore
 else:unix: LIBS += -L$$OUT_PWD/../../mvvmcore/ -lQtMvvmCore
 
+WINPWD =$$PWD
+WINOUTPWD =$$DESTDIR
+
+win32{
 WINPWD = $$replace(PWD, "\/", "\\")
 WINOUTPWD = $$replace(DESTDIR, "\/", "\\")
+}
 
 QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD\qmldir $$WINOUTPWD
 
