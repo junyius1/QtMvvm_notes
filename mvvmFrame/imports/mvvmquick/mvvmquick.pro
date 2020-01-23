@@ -95,6 +95,6 @@ DEPENDPATH += $$PWD/../../mvvmquick
 WINPWD = $$replace(PWD, "\/", "\\")
 WINOUTPWD = $$replace(DESTDIR, "\/", "\\")
 
-QMAKE_POST_LINK += xcopy /Y $$WINPWD\*.qml $$WINOUTPWD &&
-QMAKE_POST_LINK += xcopy /Y $$WINPWD\qmldir $$WINOUTPWD
+QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD\*.qml $$WINOUTPWD &&
+QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD\qmldir $$WINOUTPWD
 
