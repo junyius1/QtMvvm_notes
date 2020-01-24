@@ -44,8 +44,11 @@ WINOUTPWD =$$DESTDIR
 win32{
 WINPWD = $$replace(PWD, "\/", "\\")
 WINOUTPWD = $$replace(DESTDIR, "\/", "\\")
+QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD\qmldir $$WINOUTPWD
+} else{
+QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD/qmldir $$WINOUTPWD
 }
 
-QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD\qmldir $$WINOUTPWD
+
 
 

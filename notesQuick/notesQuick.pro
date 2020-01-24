@@ -3,7 +3,12 @@ TEMPLATE = app
 QT += quick
 CONFIG += c++14
 
+ios: {
+  TARGET = album
+
+} else{
 TARGET = notesQuick
+}
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
@@ -56,4 +61,9 @@ android {
 ANDROID_EXTRA_LIBS += \
     $$OUT_PWD/../mvvmFrame/mvvmcore/libQtMvvmCore.so \
     $$OUT_PWD/../mvvmFrame/mvvmquick/libQtMvvmQuick.so
+}
+
+ios: {
+  QMAKE_TARGET_BUNDLE_PREFIX = com.power
+
 }
