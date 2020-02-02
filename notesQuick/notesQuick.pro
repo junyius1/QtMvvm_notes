@@ -50,8 +50,22 @@ else:unix: LIBS += -L$$OUT_PWD/../mvvmFrame/mvvmquick/ -lQtMvvmQuick
 
 DEPENDPATH += $$PWD/../mvvmFrame/mvvmquick
 
+#link to core lib
+#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../qml/de/framework/QtMvvm/Core/ -ldeclarative_mvvmcore
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../qml/de/framework/QtMvvm/Core/ -ldeclarative_mvvmcore
+#else:unix: LIBS += -L$$OUT_PWD/../qml/de/framework/QtMvvm/Core/ -ldeclarative_mvvmcore
+
+#DEPENDPATH += $$PWD/../qml/de/framework/QtMvvm/Core
+
+##link to widgets lib
+#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../qml/de/framework/QtMvvm/Quick/ -ldeclarative_mvvmquick
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../qml/de/framework/QtMvvm/Quick/ -ldeclarative_mvvmquick
+#else:unix: LIBS += -L$$OUT_PWD/../qml/de/framework/QtMvvm/Quick/ -ldeclarative_mvvmquick
+
+#DEPENDPATH += $$PWD/../qml/de/framework/QtMvvm/Quick
+
 # Additional import path used to resolve QML modules in Qt Creator's code model
-QML_IMPORT_PATH = $$OUT_PWD/../qml/
+QML_IMPORT_PATH += $$OUT_PWD/../qml
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH =

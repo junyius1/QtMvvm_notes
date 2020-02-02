@@ -25,6 +25,8 @@ static void qtMvvmQuickInit()
 static void initResources()
 {
 #ifdef QT_STATIC
+    if(QtMvvm::ServiceRegistry::instance()->isRegistered(QtMvvm::__helpertypes::qobject_iid<QtMvvm::InputViewFactory*>()))
+           return;
 	qtMvvmQuickInit();
 	Q_INIT_RESOURCE(qtmvvmquick_module);
 #endif

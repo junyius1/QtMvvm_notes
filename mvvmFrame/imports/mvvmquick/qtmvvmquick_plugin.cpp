@@ -11,6 +11,48 @@
 #include "androidfilechooser.h"
 #endif
 
+struct QmldirStruct {
+    const char *type;
+    int major, minor;
+};
+
+static const QmldirStruct stylesQmldir [] = {
+    { "ActionButton", 1, 1 },
+    { "AlertDialog", 1, 1 },
+    { "ColorEdit", 1, 1 },
+    { "ColorHelper", 1, 1 },
+    { "ContrastToolBar", 1, 1 },
+    { "DateEdit", 1, 1 },
+    { "DecorLabel", 1, 2 },
+    { "DialogPresenter", 1, 2 },
+    { "DialogPresenter10", 1, 1 },
+    { "InputDialog", 1, 1 },
+    { "ListSection", 1, 1 },
+    { "MenuButton", 1, 1 },
+    { "MsgBox", 1, 1 },
+    { "MsgBoxBase", 1, 1 },
+    { "MsgDelegate", 1, 1 },
+    { "OverviewListView", 1, 1 },
+    { "PopupPresenter", 1, 4 },
+    { "PopupPresenter10", 1, 1 },
+    { "PresenterProgress", 1, 1 },
+    { "PresentingDrawer", 1, 1 },
+    { "PresentingStackView", 1, 1 },
+    { "PresentingStackView10", 1, 1 },
+    { "ProgressDialog", 1, 1 },
+    { "QtMvvmApp", 1, 1 },
+    { "QtMvvmApp10", 1, 1 },
+    { "RoundActionButton", 1, 1 },
+    { "RoundMenuButton", 1, 1 },
+    { "SearchBar", 1, 1 },
+    { "SectionListView", 1, 1 },
+    { "SettingsView", 1, 1 },
+    { "TimeEdit", 1, 3 },
+    { "TimeTumbler", 1, 1 },
+    { "TintIcon", 1, 1 },
+    { "ToolBarLabel", 1, 2 }
+};
+
 static void initResources()
 {
 #ifdef QT_STATIC
@@ -25,9 +67,18 @@ static QObject *createQuickPresenterQmlSingleton(QQmlEngine *qmlEngine, QJSEngin
 }
 
 QtMvvmQuickDeclarativeModule::QtMvvmQuickDeclarativeModule(QObject *parent) :
-	QQmlExtensionPlugin(parent)
+    QQmlExtensionPlugin(parent)
 {
 	initResources();
+}
+
+QString fileLocation()
+{
+#ifndef QT_STATIC
+    return "qrc:/de/framework/QtMvvm/Quick";
+#else
+    return "qrc:/qt-project.org/imports/de/framework/QtMvvm/Quick";
+#endif
 }
 
 void QtMvvmQuickDeclarativeModule::registerTypes(const char *uri)
@@ -51,6 +102,17 @@ void QtMvvmQuickDeclarativeModule::registerTypes(const char *uri)
 
 	//Version 1.1
 	qmlRegisterType<QtMvvm::QQmlViewPlaceholder>(uri, 1, 1, "ViewPlaceholder");
+
+    const QString filesLocation = fileLocation();
+//    qDebug("qDebug11------------------");
+//    qDebug(uri);
+
+    const QString baseStyleLocation = filesLocation;// + "/Styles/Base";
+    for (int i = 0; i < int(sizeof(stylesQmldir)/sizeof(stylesQmldir[0])); i++)
+        qmlRegisterType(QUrl(baseStyleLocation + "/" + stylesQmldir[i].type + ".qml"), uri,
+                        stylesQmldir[i].major, stylesQmldir[i].minor, stylesQmldir[i].type);
+
+//     qDebug("qDebug22------------------");
 
 	// Check to make sure no module update is forgotten
 	static_assert(VERSION_MAJOR == 1 && VERSION_MINOR == 1, "QML module version needs to be updated");

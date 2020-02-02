@@ -14,7 +14,7 @@ Module {
         "QtQml 2.2",
         "QtQuick 2.12",
         "QtQuick.Window 2.12",
-        "de.framework.QtMvvm.Core 1.0"
+        "de.framework.QtMvvm.Core 1.1"
     ]
     Component {
         name: "QUrlValidator"

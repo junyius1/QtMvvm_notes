@@ -35,6 +35,7 @@ else:unix: LIBS += -L$$OUT_PWD/../mvvmcore/ -lQtMvvmCore
 
 QM_FILES_INSTALL_PATH = $$[QT_INSTALL_TRANSLATIONS]
 
+QML_IMPORT_PATH += $$OUT_PWD/../qml
 
 #replace template qm by ts
 QM_FILES += translations/qtmvvmquick_template.ts
