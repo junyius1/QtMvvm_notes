@@ -148,3 +148,12 @@ static {
 
 CONFIG += no_cxx_module
 load(qml_plugin)
+
+
+SOURCEDIR =$$OUT_PWD/../../../qml
+
+win32{
+SOURCEDIR = $$replace(SOURCEDIR, "\/", "\\")
+}
+
+QMAKE_PRE_LINK += $$QMAKE_COPY_DIR $$SOURCEDIR $$[QT_INSTALL_PREFIX]
