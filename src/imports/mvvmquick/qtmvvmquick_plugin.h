@@ -14,6 +14,7 @@ public:
 
 private:
     QString fileLocation() const;
+    bool isLoadedFromResource() const;
 };
 
 #endif // QTMVVMQUICK_PLUGIN_H

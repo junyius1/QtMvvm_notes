@@ -127,7 +127,7 @@ INCLUDED_RESOURCE_FILES += $$SHADER_FILES
 
 controls.files = $$INCLUDED_RESOURCE_FILES
 controls.prefix = /de/framework/QtMvvm/Quick
-!static:RESOURCES += $$CONTROLS_QML_FILES
+!static:RESOURCES += controls
 
 static {
  QML_FILES += $$INCLUDED_RESOURCE_FILES
@@ -137,21 +137,18 @@ CONFIG += no_cxx_module
 load(qml_plugin)
 
 
+!qtquickcompiler{
 SOURCEDIR =$$OUT_PWD/../../../qml
-
-win32{
-SOURCEDIR = $$replace(SOURCEDIR, "\/", "\\")
-}
 
 WINOUTPWD =$$sprintf("%1%2", $$OUT_PWD/../../../qml/, $$TARGETPATH)
 
 win32{
-WINPWD = $$replace(PWD, "\/", "\\")
-WINOUTPWD = $$replace(WINOUTPWD, "\/", "\\")
-QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD\*.qml $$WINOUTPWD
-} else{
-#QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD/*.qml $$WINOUTPWD &&
-#QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD/qmldir $$WINOUTPWD
+    SOURCEDIR = $$replace(SOURCEDIR, "\/", "\\")
+    WINPWD = $$replace(PWD/, "\/", "\\")
+    WINOUTPWD = $$replace(WINOUTPWD, "\/", "\\")
+    QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD*.qml $$WINOUTPWD
+    } else{
+    #QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD/*.qml $$WINOUTPWD
+    }
+    #QMAKE_PRE_LINK += $$QMAKE_COPY_DIR $$SOURCEDIR $$[QT_INSTALL_PREFIX]
 }
-#QMAKE_PRE_LINK += $$QMAKE_COPY_DIR $$SOURCEDIR $$[QT_INSTALL_PREFIX]
-message($$QMAKE_POST_LINK)

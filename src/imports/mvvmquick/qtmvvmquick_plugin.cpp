@@ -23,8 +23,8 @@ static const QmldirStruct stylesQmldir [] = {
     { "ColorHelper", 1, 1 },
     { "ContrastToolBar", 1, 1 },
     { "DateEdit", 1, 1 },
-    { "DecorLabel", 1, 2 },
-    { "DialogPresenter", 1, 2 },
+    { "DecorLabel", 1, 1 },
+    { "DialogPresenter", 1, 1 },
     { "DialogPresenter10", 1, 1 },
     { "InputDialog", 1, 1 },
     { "ListSection", 1, 1 },
@@ -33,7 +33,7 @@ static const QmldirStruct stylesQmldir [] = {
     { "MsgBoxBase", 1, 1 },
     { "MsgDelegate", 1, 1 },
     { "OverviewListView", 1, 1 },
-    { "PopupPresenter", 1, 4 },
+    { "PopupPresenter", 1, 1 },
     { "PopupPresenter10", 1, 1 },
     { "PresenterProgress", 1, 1 },
     { "PresentingDrawer", 1, 1 },
@@ -47,10 +47,10 @@ static const QmldirStruct stylesQmldir [] = {
     { "SearchBar", 1, 1 },
     { "SectionListView", 1, 1 },
     { "SettingsView", 1, 1 },
-    { "TimeEdit", 1, 3 },
+    { "TimeEdit", 1, 1 },
     { "TimeTumbler", 1, 1 },
     { "TintIcon", 1, 1 },
-    { "ToolBarLabel", 1, 2 }
+    { "ToolBarLabel", 1, 1 }
 };
 
 static void initResources()
@@ -75,10 +75,29 @@ QtMvvmQuickDeclarativeModule::QtMvvmQuickDeclarativeModule(QObject *parent) :
 QString QtMvvmQuickDeclarativeModule::fileLocation() const
 {
 #ifndef QT_STATIC
-//    return "qrc:/de/framework/QtMvvm/Quick";
+    if (isLoadedFromResource())
+        return "qrc:/de/framework/QtMvvm/Quick";
     return baseUrl().toString();
 #else
     return "qrc:/qt-project.org/imports/de/framework/QtMvvm/Quick";
+#endif
+}
+
+bool QtMvvmQuickDeclarativeModule::isLoadedFromResource() const
+{
+#ifdef QT_STATIC
+    // When static it is included automatically
+    // for us.
+    return false;
+#endif
+#if defined(ALWAYS_LOAD_FROM_RESOURCES)
+    return true;
+#else
+    // If one file is missing, it will load all the files from the resource
+    QFile file(baseUrl().toLocalFile() + "/ApplicationWindow.qml");
+    if (!file.exists())
+        return true;
+    return false;
 #endif
 }
 
