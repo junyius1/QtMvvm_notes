@@ -1,4 +1,4 @@
-QT += core qml quick
+QT += core qml quick mvvmcore
 CXX_MODULE = mvvmcore
 TARGETPATH = de/framework/QtMvvm/Core
 TARGET  = declarative_mvvmcore
@@ -34,9 +34,9 @@ OTHER_FILES += qmldir
 
 
 #link to core lib
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../mvvmcore/release/ -lQtMvvmCore
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../mvvmcore/debug/ -lQtMvvmCore
-else:unix: LIBS += -L$$OUT_PWD/../../mvvmcore/ -lQtMvvmCore
+#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../mvvmcore/release/ -lQtMvvmCore
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../mvvmcore/debug/ -lQtMvvmCore
+#else:unix: LIBS += -L$$OUT_PWD/../../mvvmcore/ -lQtMvvmCore
 
 #WINPWD =$$PWD
 #WINOUTPWD =$$DESTDIR

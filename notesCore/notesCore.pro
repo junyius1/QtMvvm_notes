@@ -7,7 +7,7 @@ TARGET = notesCore
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
-INCLUDEPATH += $$PWD/../mvvmFrame/mvvmcore
+INCLUDEPATH += $$PWD/../src/mvvmcore
 
 HEADERS += \
 	notesapp.h \
@@ -21,4 +21,4 @@ TRANSLATIONS += notes_core_de.ts \
 	notes_core_template.ts
 
 DISTFILES += $$TRANSLATIONS
-notesCore.depends += mvvmFrame
+notesCore.depends += src

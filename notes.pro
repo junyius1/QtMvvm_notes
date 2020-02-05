@@ -1,14 +1,12 @@
 TEMPLATE = subdirs
 
-SUBDIRS += \
-	notesQuick \
-	notesCore
 
 SUBDIRS += \
-        mvvmFrame \
-        notesQuick \
         notesCore \
+        notesQuick \
+        src
 
-notesQuick.depends += notesCore
+notesQuick.depends += notesCore src
 
-DISTFILES += .qmake.conf
+DISTFILES += .qmake.conf \
+        sync.profile

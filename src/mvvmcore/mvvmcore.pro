@@ -43,3 +43,5 @@ SOURCES += \
 DEFINES+=QT_BUILD_MVVMCORE_LIB
 
 include(../QPluginFactory/qpluginfactory.pri)
+
+load(qt_module)

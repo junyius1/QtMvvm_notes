@@ -72,10 +72,11 @@ QtMvvmQuickDeclarativeModule::QtMvvmQuickDeclarativeModule(QObject *parent) :
 	initResources();
 }
 
-QString fileLocation()
+QString QtMvvmQuickDeclarativeModule::fileLocation() const
 {
 #ifndef QT_STATIC
-    return "qrc:/de/framework/QtMvvm/Quick";
+//    return "qrc:/de/framework/QtMvvm/Quick";
+    return baseUrl().toString();
 #else
     return "qrc:/qt-project.org/imports/de/framework/QtMvvm/Quick";
 #endif

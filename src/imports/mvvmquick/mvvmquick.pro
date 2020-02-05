@@ -1,5 +1,5 @@
 requires(contains(QT_CONFIG, accessibility))
-QT += core qml quick svg quickcontrols2
+QT += core qml quick svg quickcontrols2 mvvmquick
 CXX_MODULE = mvvmquick
 TARGETPATH = de/framework/QtMvvm/Quick
 TARGET  = declarative_mvvmquick
@@ -64,10 +64,10 @@ CONTROLS_QML_FILES += \
         ColorEdit.qml \
         ProgressDialog.qml
 
-static{
+
 RESOURCES += \
         qtmvvmquick_plugin.qrc
-}
+
 
 OTHER_FILES += qmldir
 
@@ -80,31 +80,18 @@ android {
 #CONFIG += qmlcache
 
 #link to core lib
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../mvvmcore/release/ -lQtMvvmCore
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../mvvmcore/debug/ -lQtMvvmCore
-else:unix: LIBS += -L$$OUT_PWD/../../mvvmcore/ -lQtMvvmCore
+#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../mvvmcore/release/ -lQtMvvmCore
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../mvvmcore/debug/ -lQtMvvmCore
+#else:unix: LIBS += -L$$OUT_PWD/../../mvvmcore/ -lQtMvvmCore
 
-DEPENDPATH += $$PWD/../../mvvmcore
+#DEPENDPATH += $$PWD/../../mvvmcore
 
-#link to widgets lib
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../mvvmquick/release/ -lQtMvvmQuick
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../mvvmquick/debug/ -lQtMvvmQuick
-else:unix: LIBS += -L$$OUT_PWD/../../mvvmquick/ -lQtMvvmQuick
+##link to widgets lib
+#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../mvvmquick/release/ -lQtMvvmQuick
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../mvvmquick/debug/ -lQtMvvmQuick
+#else:unix: LIBS += -L$$OUT_PWD/../../mvvmquick/ -lQtMvvmQuick
 
-DEPENDPATH += $$PWD/../../mvvmquick
-
-#WINPWD =$$PWD
-#WINOUTPWD =$$DESTDIR
-
-#win32{
-#WINPWD = $$replace(PWD, "\/", "\\")
-#WINOUTPWD = $$replace(DESTDIR, "\/", "\\")
-#QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD\*.qml $$WINOUTPWD &&
-#QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD\qmldir $$WINOUTPWD
-#} else{
-#QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD/*.qml $$WINOUTPWD &&
-#QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD/qmldir $$WINOUTPWD
-#}
+#DEPENDPATH += $$PWD/../../mvvmquick
 
 qtquickcompiler {
     DEFINES += ALWAYS_LOAD_FROM_RESOURCES
@@ -140,7 +127,7 @@ INCLUDED_RESOURCE_FILES += $$SHADER_FILES
 
 controls.files = $$INCLUDED_RESOURCE_FILES
 controls.prefix = /de/framework/QtMvvm/Quick
-!static:RESOURCES += controls
+!static:RESOURCES += $$CONTROLS_QML_FILES
 
 static {
  QML_FILES += $$INCLUDED_RESOURCE_FILES
@@ -156,4 +143,15 @@ win32{
 SOURCEDIR = $$replace(SOURCEDIR, "\/", "\\")
 }
 
-QMAKE_PRE_LINK += $$QMAKE_COPY_DIR $$SOURCEDIR $$[QT_INSTALL_PREFIX]
+WINOUTPWD =$$sprintf("%1%2", $$OUT_PWD/../../../qml/, $$TARGETPATH)
+
+win32{
+WINPWD = $$replace(PWD, "\/", "\\")
+WINOUTPWD = $$replace(WINOUTPWD, "\/", "\\")
+QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD\*.qml $$WINOUTPWD
+} else{
+#QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD/*.qml $$WINOUTPWD &&
+#QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD/qmldir $$WINOUTPWD
+}
+#QMAKE_PRE_LINK += $$QMAKE_COPY_DIR $$SOURCEDIR $$[QT_INSTALL_PREFIX]
+message($$QMAKE_POST_LINK)

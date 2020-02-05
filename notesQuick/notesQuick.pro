@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += quick
+QT += quick mvvmcore mvvmquick
 CONFIG += c++14
 
 ios: {
@@ -12,7 +12,7 @@ TARGET = notesQuick
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
-INCLUDEPATH += $$PWD/../mvvmFrame/mvvmcore $$PWD/../mvvmFrame/mvvmquick
+INCLUDEPATH += $$PWD/../src/mvvmcore $$PWD/../src/mvvmquick
 
 SOURCES += main.cpp
 
@@ -37,18 +37,18 @@ else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += $$OUT_PWD/
 else:unix: PRE_TARGETDEPS += $$OUT_PWD/../notesCore/libnotesCore.a
 
 #link to core lib
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../mvvmFrame/mvvmcore/release/ -lQtMvvmCore
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../mvvmFrame/mvvmcore/debug/ -lQtMvvmCore
-else:unix: LIBS += -L$$OUT_PWD/../mvvmFrame/mvvmcore/ -lQtMvvmCore
+#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../mvvmFrame/mvvmcore/release/ -lQtMvvmCore
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../mvvmFrame/mvvmcore/debug/ -lQtMvvmCore
+#else:unix: LIBS += -L$$OUT_PWD/../mvvmFrame/mvvmcore/ -lQtMvvmCore
 
-DEPENDPATH += $$PWD/../mvvmFrame/mvvmcore
+#DEPENDPATH += $$PWD/../mvvmFrame/mvvmcore
 
-#link to widgets lib
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../mvvmFrame/mvvmquick/release/ -lQtMvvmQuick
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../mvvmFrame/mvvmquick/debug/ -lQtMvvmQuick
-else:unix: LIBS += -L$$OUT_PWD/../mvvmFrame/mvvmquick/ -lQtMvvmQuick
+##link to widgets lib
+#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../mvvmFrame/mvvmquick/release/ -lQtMvvmQuick
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../mvvmFrame/mvvmquick/debug/ -lQtMvvmQuick
+#else:unix: LIBS += -L$$OUT_PWD/../mvvmFrame/mvvmquick/ -lQtMvvmQuick
 
-DEPENDPATH += $$PWD/../mvvmFrame/mvvmquick
+#DEPENDPATH += $$PWD/../mvvmFrame/mvvmquick
 
 #link to core lib
 #win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../qml/de/framework/QtMvvm/Core/ -ldeclarative_mvvmcore
@@ -81,3 +81,11 @@ ios: {
   QMAKE_TARGET_BUNDLE_PREFIX = com.power
 
 }
+
+WINOUTPWD =$$OUT_PWD/../bin/*
+WINOUTPWD=$$replace(WINOUTPWD, "\/", "\\")
+TOWINOUTPWD = $$[QT_INSTALL_BINS]
+TOWINOUTPWD=$$replace(TOWINOUTPWD, "\/", "\\")
+QMAKE_POST_LINK += $$QMAKE_COPY $$WINOUTPWD $$TOWINOUTPWD
+
+message($$QMAKE_POST_LINK)

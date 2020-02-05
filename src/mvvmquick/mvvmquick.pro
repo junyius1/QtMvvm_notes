@@ -5,7 +5,7 @@ INCLUDEPATH += $$PWD/../mvvmcore
 TEMPLATE=lib
 CONFIG += c++14
 
-QT = core gui qml quick svg
+QT = core gui qml quick svg mvvmcore
 
 HEADERS += \
 	qtmvvmquick_global.h \
@@ -29,9 +29,9 @@ TRANSLATIONS += \
 DEFINES += QT_BUILD_MVVMQUICK_LIB
 
 #link to core lib
-win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../mvvmcore/release/ -lQtMvvmCore
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../mvvmcore/debug/ -lQtMvvmCore
-else:unix: LIBS += -L$$OUT_PWD/../mvvmcore/ -lQtMvvmCore
+#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../mvvmcore/release/ -lQtMvvmCore
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../mvvmcore/debug/ -lQtMvvmCore
+#else:unix: LIBS += -L$$OUT_PWD/../mvvmcore/ -lQtMvvmCore
 
 QM_FILES_INSTALL_PATH = $$[QT_INSTALL_TRANSLATIONS]
 
@@ -42,3 +42,6 @@ QM_FILES += translations/qtmvvmquick_template.ts
 
 include(../DialogMaster/dialogmaster.pri)
 include(../QUrlValidator/qurlvalidator.pri)
+
+load(qt_module)
+

@@ -11,6 +11,9 @@ class QtMvvmQuickDeclarativeModule : public QQmlExtensionPlugin
 public:
     QtMvvmQuickDeclarativeModule(QObject *parent = nullptr);
     void registerTypes(const char *uri) override;
+
+private:
+    QString fileLocation() const;
 };
 
 #endif // QTMVVMQUICK_PLUGIN_H
