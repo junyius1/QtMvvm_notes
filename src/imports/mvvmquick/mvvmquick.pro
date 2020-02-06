@@ -9,9 +9,6 @@ DEFINES += "VERSION_MINOR=$$MODULE_VERSION_MINOR"
 
 #DESTDIR = ../../../qml/de/framework/QtMvvm/Quick/
 
-#TEMPLATE = lib
-
-#CONFIG += plugin
 
 HEADERS += \
 	qtmvvmquick_plugin.h \
@@ -77,21 +74,6 @@ android {
 	SOURCES += androidfilechooser.cpp
 }
 
-#CONFIG += qmlcache
-
-#link to core lib
-#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../mvvmcore/release/ -lQtMvvmCore
-#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../mvvmcore/debug/ -lQtMvvmCore
-#else:unix: LIBS += -L$$OUT_PWD/../../mvvmcore/ -lQtMvvmCore
-
-#DEPENDPATH += $$PWD/../../mvvmcore
-
-##link to widgets lib
-#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../mvvmquick/release/ -lQtMvvmQuick
-#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../mvvmquick/debug/ -lQtMvvmQuick
-#else:unix: LIBS += -L$$OUT_PWD/../../mvvmquick/ -lQtMvvmQuick
-
-#DEPENDPATH += $$PWD/../../mvvmquick
 
 qtquickcompiler {
     DEFINES += ALWAYS_LOAD_FROM_RESOURCES
@@ -133,22 +115,44 @@ static {
  QML_FILES += $$INCLUDED_RESOURCE_FILES
 }
 
-CONFIG += no_cxx_module
-load(qml_plugin)
+android{
+    TEMPLATE = lib
+
+    CONFIG += plugin
+    CONFIG += qmlcache
+
+    #link to core lib
+    win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../mvvmcore/release/ -lQtMvvmCore
+    else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../mvvmcore/debug/ -lQtMvvmCore
+    else:unix: LIBS += -L$$OUT_PWD/../../mvvmcore/ -lQtMvvmCore
+
+    DEPENDPATH += $$PWD/../../mvvmcore
+
+    #link to widgets lib
+    win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../../mvvmquick/release/ -lQtMvvmQuick
+    else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../../mvvmquick/debug/ -lQtMvvmQuick
+    else:unix: LIBS += -L$$OUT_PWD/../../mvvmquick/ -lQtMvvmQuick
+
+    DEPENDPATH += $$PWD/../../mvvmquick
+} else:{
+    CONFIG += no_cxx_module
+    load(qml_plugin)
 
 
-!qtquickcompiler{
-SOURCEDIR =$$OUT_PWD/../../../qml
+    !qtquickcompiler{
+        SOURCEDIR =$$OUT_PWD/../../../qml
 
-WINOUTPWD =$$sprintf("%1%2", $$OUT_PWD/../../../qml/, $$TARGETPATH)
+        WINOUTPWD =$$sprintf("%1%2", $$OUT_PWD/../../../qml/, $$TARGETPATH)
 
-win32{
-    SOURCEDIR = $$replace(SOURCEDIR, "\/", "\\")
-    WINPWD = $$replace(PWD/, "\/", "\\")
-    WINOUTPWD = $$replace(WINOUTPWD, "\/", "\\")
-    QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD*.qml $$WINOUTPWD
-    } else{
-    #QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD/*.qml $$WINOUTPWD
+        win32{
+            SOURCEDIR = $$replace(SOURCEDIR, "\/", "\\")
+            WINPWD = $$replace(PWD/, "\/", "\\")
+            WINOUTPWD = $$replace(WINOUTPWD, "\/", "\\")
+            QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD*.qml $$WINOUTPWD
+            }
+        else:{
+            #QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD/*.qml $$WINOUTPWD
+            }
+        #QMAKE_PRE_LINK += $$QMAKE_COPY_DIR $$SOURCEDIR $$[QT_INSTALL_PREFIX]
     }
-    #QMAKE_PRE_LINK += $$QMAKE_COPY_DIR $$SOURCEDIR $$[QT_INSTALL_PREFIX]
 }

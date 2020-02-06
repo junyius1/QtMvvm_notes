@@ -44,4 +44,6 @@ DEFINES+=QT_BUILD_MVVMCORE_LIB
 
 include(../QPluginFactory/qpluginfactory.pri)
 
+!android{
 load(qt_module)
+}

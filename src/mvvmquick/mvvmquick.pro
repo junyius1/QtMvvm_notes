@@ -28,11 +28,6 @@ TRANSLATIONS += \
 
 DEFINES += QT_BUILD_MVVMQUICK_LIB
 
-#link to core lib
-#win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../mvvmcore/release/ -lQtMvvmCore
-#else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../mvvmcore/debug/ -lQtMvvmCore
-#else:unix: LIBS += -L$$OUT_PWD/../mvvmcore/ -lQtMvvmCore
-
 QM_FILES_INSTALL_PATH = $$[QT_INSTALL_TRANSLATIONS]
 
 QML_IMPORT_PATH += $$OUT_PWD/../qml
@@ -43,5 +38,12 @@ QM_FILES += translations/qtmvvmquick_template.ts
 include(../DialogMaster/dialogmaster.pri)
 include(../QUrlValidator/qurlvalidator.pri)
 
+android{
+#link to core lib
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../mvvmcore/release/ -lQtMvvmCore
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../mvvmcore/debug/ -lQtMvvmCore
+else:unix: LIBS += -L$$OUT_PWD/../mvvmcore/ -lQtMvvmCore
+} else {
 load(qt_module)
 
+}

@@ -73,15 +73,15 @@ QML_DESIGNER_IMPORT_PATH =
 
 android {
 ANDROID_EXTRA_LIBS += \
-    $$OUT_PWD/../mvvmFrame/mvvmcore/libQtMvvmCore.so \
-    $$OUT_PWD/../mvvmFrame/mvvmquick/libQtMvvmQuick.so
+    $$OUT_PWD/../src/mvvmcore/libQtMvvmCore.so \
+    $$OUT_PWD/../src/mvvmquick/libQtMvvmQuick.so
 }
 
 ios: {
   QMAKE_TARGET_BUNDLE_PREFIX = com.power
 
 }
-
+win32{
 WINOUTPWD =$$OUT_PWD/../bin/*
 WINOUTPWD=$$replace(WINOUTPWD, "\/", "\\")
 TOWINOUTPWD = $$[QT_INSTALL_BINS]
@@ -89,3 +89,4 @@ TOWINOUTPWD=$$replace(TOWINOUTPWD, "\/", "\\")
 QMAKE_POST_LINK += $$QMAKE_COPY $$WINOUTPWD $$TOWINOUTPWD
 
 message($$QMAKE_POST_LINK)
+}
