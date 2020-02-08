@@ -17,6 +17,9 @@ RESOURCES += \
 TRANSLATIONS += notes_quick_de.ts \
 	notes_quick_template.ts
 
+#add lib dir to rpath
+mac: QMAKE_LFLAGS += '-Wl,-rpath,\'$$OUT_PWD/../lib\''
+
 # Link with core project
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../notesCore/release/ -lnotesCore
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../notesCore/debug/ -lnotesCore
