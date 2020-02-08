@@ -17,6 +17,14 @@ RESOURCES += \
 TRANSLATIONS += notes_quick_de.ts \
 	notes_quick_template.ts
 
+#not found by linker?
+linux:!android {
+    LIBS += -L$$OUT_PWD/../lib #required to make this the first place to search
+    LIBS += -L$$[QT_INSTALL_LIBS] -licudata
+    LIBS += -L$$[QT_INSTALL_LIBS] -licui18n
+    LIBS += -L$$[QT_INSTALL_LIBS] -licuuc
+}
+
 #add lib dir to rpath
 mac: QMAKE_LFLAGS += '-Wl,-rpath,\'$$OUT_PWD/../lib\''
 
