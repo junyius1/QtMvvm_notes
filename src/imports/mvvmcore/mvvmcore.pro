@@ -76,16 +76,16 @@ android{
 
 } else:{
 
-    WINPWD =$$PWD
-    WINOUTPWD =$$DESTDIR
+#    WINPWD =$$PWD
+#    WINOUTPWD =$$DESTDIR
 
-    win32{
-        WINPWD = $$replace(PWD, "\/", "\\")
-        WINOUTPWD = $$replace(DESTDIR, "\/", "\\")
-        QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD\qmldir $$WINOUTPWD
-    } else:{
-        QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD/qmldir $$WINOUTPWD
-    }
+#    win32{
+#        WINPWD = $$replace(PWD, "\/", "\\")
+#        WINOUTPWD = $$replace(DESTDIR, "\/", "\\")
+#        QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD\qmldir $$WINOUTPWD
+#    } else:{
+#        QMAKE_POST_LINK += $$QMAKE_COPY $$WINPWD/qmldir $$WINOUTPWD
+#    }
     CONFIG += no_cxx_module
     load(qml_plugin)
 }

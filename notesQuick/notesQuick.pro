@@ -3,12 +3,7 @@ TEMPLATE = app
 QT += quick mvvmcore mvvmquick
 CONFIG += c++14
 
-ios: {
-  TARGET = album
-
-} else{
 TARGET = notesQuick
-}
 
 DEFINES += QT_DEPRECATED_WARNINGS
 
@@ -77,10 +72,7 @@ ANDROID_EXTRA_LIBS += \
     $$OUT_PWD/../src/mvvmquick/libQtMvvmQuick.so
 }
 
-ios: {
-  QMAKE_TARGET_BUNDLE_PREFIX = com.power
 
-}
 win32{
 WINOUTPWD =$$OUT_PWD/../bin/*
 WINOUTPWD=$$replace(WINOUTPWD, "\/", "\\")
