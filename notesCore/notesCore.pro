@@ -11,11 +11,15 @@ INCLUDEPATH += $$PWD/../src/mvvmcore
 
 HEADERS += \
 	notesapp.h \
-	mainviewmodel.h
+        mainviewmodel.h \
+        drawerviewmodel.h \
+        tabviewmodel.h
 
 SOURCES += \
 	notesapp.cpp \
-	mainviewmodel.cpp
+        mainviewmodel.cpp \
+        drawerviewmodel.cpp \
+        tabviewmodel.cpp
 
 TRANSLATIONS += notes_core_de.ts \
 	notes_core_template.ts

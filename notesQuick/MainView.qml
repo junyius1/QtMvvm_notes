@@ -3,60 +3,133 @@ import QtQuick.Controls 2.3
 import QtQuick.Layouts 1.3
 import de.framework.QtMvvm.Core 1.1
 import de.framework.QtMvvm.Quick 1.1
-import com.example.notes 1.0
+import com.cross.notes 1.1
 
 Page {
-    id: mainView
+	id: sampleView
     property MainViewModel viewModel: null
+	readonly property bool presentAsRoot: true
 
-    header: ContrastToolBar {
-        RowLayout {
-            anchors.fill: parent
-            spacing: 0
+	header: ContrastToolBar {
+		RowLayout {
+			anchors.fill: parent
+			spacing: 0
 
-            ToolBarLabel {
-                text: qsTr("MainViewModel")
-                Layout.fillWidth: true
-            }
-        }
-    }
+			ActionButton {
+				text: "≣"
+				display: AbstractButton.TextOnly
+				onClicked: QuickPresenter.toggleDrawer()
+			}
 
-    PresenterProgress {}
+			ToolBarLabel {
+				text: qsTr("Sample")
+				Layout.fillWidth: true
+			}
 
-    Pane {
-        anchors.fill: parent
+			MenuButton {
+				MenuItem {
+					text: qsTr("Another Input")
+					onTriggered: viewModel.getInput()
+				}
+				MenuItem {
+					text: qsTr("Add Files")
+					onTriggered: viewModel.getFiles()
+				}
+				MenuItem {
+					text: qsTr("Add Color")
+					onTriggered: viewModel.getColor()
+				}
+				MenuItem {
+					text: qsTr("Show Progress")
+					onTriggered: viewModel.showProgress()
+				}
 
-        ColumnLayout {
-            anchors.fill: parent
+				MenuSeparator {}
 
-            TextField {
-                id: textEdit
-                Layout.fillWidth: true
+				MenuItem {
+					text: qsTr("About")
+					onTriggered: viewModel.about()
+				}
+			}
+		}
+	}
 
-                MvvmBinding {
-                    viewModel: mainView.viewModel
-                    viewModelProperty: "text"
-                    view: textEdit
-                    viewProperty: "text"
-                }
-            }
+	PresenterProgress {}
 
-            Label {
-                id: textLabel
-                Layout.fillWidth: true
+	Pane {
+		anchors.fill: parent
 
-                MvvmBinding {
-                    viewModel: mainView.viewModel
-                    viewModelProperty: "text"
-                    view: textLabel
-                    viewProperty: "text"
-                    type: MvvmBinding.OneWayToView
-                }
-            }
+		GridLayout {
+			columns: 2
+			anchors.fill: parent
 
-            Item {
-                Layout.fillHeight: true
-            }
-        }
-    }
+			Label {
+				text: qsTr("Name:")
+			}
+
+			TextField {
+				id: nameEdit
+				Layout.fillWidth: true
+				selectByMouse: true
+
+				MvvmBinding {
+					viewModel: sampleView.viewModel
+					view: nameEdit
+					viewModelProperty: "name"
+					viewProperty: "text"
+				}
+			}
+
+			Label {
+				text: qsTr("Active:")
+			}
+
+			Switch {
+				id: activeSwitch
+				Layout.alignment: Qt.AlignLeft
+
+				MvvmBinding {
+					viewModel: sampleView.viewModel
+					view: activeSwitch
+					viewModelProperty: "active"
+					viewProperty: "checked"
+				}
+			}
+
+			Label {
+				text: qsTr("Events:")
+			}
+
+			RowLayout {
+				Layout.fillWidth: true
+
+				Button {
+					text: qsTr("&Clear")
+					onClicked: viewModel.clearEvents()
+				}
+
+				Button {
+					text: qsTr("Get &Result")
+					onClicked: viewModel.getResult()
+				}
+			}
+
+			ListView {
+				id: lView
+				Layout.columnSpan: 2
+				Layout.fillWidth: true
+				Layout.fillHeight: true
+				clip: true
+
+				ScrollBar.vertical: ScrollBar {}
+
+				model: viewModel.eventsModel
+
+				delegate: ItemDelegate {
+					width: parent.width
+					text: viewModel.eventsModel.data(viewModel.eventsModel.index(index, 0))  //because "display" is not accessible
+				}
+			}
+		}
+	}
 }

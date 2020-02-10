@@ -2,6 +2,9 @@
 #include <QtQml/QQmlApplicationEngine>
 #include <notesapp.h>
 #include <mainviewmodel.h>
+
+#include <drawerviewmodel.h>
+#include <tabviewmodel.h>
 #include "quickpresenter.h"
 
 QTMVVM_REGISTER_CORE_APP(notesApp)
@@ -13,7 +16,11 @@ int main(int argc, char *argv[])
     QGuiApplication app(argc, argv);
 
     QtMvvm::QuickPresenter::getInputViewFactory(); //Workaround for QTBUG-69963
-    qmlRegisterUncreatableType<MainViewModel>("com.example.notes", 1, 0, "MainViewModel", "ViewModels cannot be created!");
+    qmlRegisterUncreatableType<MainViewModel>("com.cross.notes", 1, 1, "MainViewModel", "ViewModels cannot be created!");
+
+    qmlRegisterUncreatableType<DrawerViewModel>("com.cross.notes", 1, 1, "DrawerViewModel", QStringLiteral("ViewModels cannot be created"));
+    qmlRegisterUncreatableType<TabViewModel>("com.cross.notes", 1, 1, "TabViewModel", QStringLiteral("ViewModels cannot be created"));
+    qmlRegisterUncreatableType<TabItemViewModel>("com.cross.notes", 1, 1, "TabItemViewModel", QStringLiteral("ViewModels cannot be created"));
 
     QQmlApplicationEngine engine;
     engine.addImportPath((QStringLiteral("../qml")));

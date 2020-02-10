@@ -1,5 +1,5 @@
 #include "tabviewmodel.h"
-#include <QtMvvmCore/Messages>
+#include "message.h"
 
 TabViewModel::TabViewModel(QObject *parent) :
 	ViewModel(parent)

@@ -1,9 +1,7 @@
 #include "drawerviewmodel.h"
-#include <QtMvvmCore/SettingsViewModel>
 
-#include "sampleviewmodel.h"
+#include "mainviewmodel.h"
 #include "tabviewmodel.h"
-#include "containerviewmodel.h"
 
 DrawerViewModel::DrawerViewModel(QObject *parent) :
 	ViewModel(parent),
@@ -29,19 +27,14 @@ void DrawerViewModel::open(int index)
 {
 	switch (index) {
 	case 0:
-		show<SampleViewModel>();
+		show<MainViewModel>();
 		break;
 	case 1:
 		show<TabItemViewModel>({
 								   {QStringLiteral("title"), QStringLiteral("Root Tab")}
 							   });
 		break;
-	case 2:
-		show<ContainerViewModel>();
-		break;
-	case 3:
-		show<QtMvvm::SettingsViewModel>();
-		break;
+
 	default:
 		break;
 	}

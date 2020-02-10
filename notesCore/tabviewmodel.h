@@ -1,7 +1,7 @@
 #ifndef TABVIEWMODEL_H
 #define TABVIEWMODEL_H
 
-#include <QtMvvmCore/ViewModel>
+#include "viewmodel.h"
 
 class TabViewModel : public QtMvvm::ViewModel
 {

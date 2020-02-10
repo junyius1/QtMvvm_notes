@@ -2,7 +2,7 @@
 #define DRAWERVIEWMODEL_H
 
 #include <QtGui/QStandardItemModel>
-#include <QtMvvmCore/ViewModel>
+#include "viewmodel.h"
 
 class DrawerViewModel : public QtMvvm::ViewModel
 {

@@ -2,7 +2,10 @@
     <qresource prefix="/">
         <file>App.qml</file>
     </qresource>
-	<qresource prefix="/qtmvvm/views">
+    <qresource prefix="/qtmvvm/views">
         <file>MainView.qml</file>
+        <file>DrawerView.qml</file>
+        <file>TabItemView.qml</file>
+        <file>TabView.qml</file>
     </qresource>
 </RCC>
