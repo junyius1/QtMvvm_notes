@@ -1,135 +1,80 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
+import QtQuick.Controls.Material 2.3
 import QtQuick.Layouts 1.3
 import de.framework.QtMvvm.Core 1.1
 import de.framework.QtMvvm.Quick 1.1
 import com.cross.notes 1.1
 
 Page {
-	id: sampleView
+    id: tabView
     property MainViewModel viewModel: null
-	readonly property bool presentAsRoot: true
 
-	header: ContrastToolBar {
-		RowLayout {
-			anchors.fill: parent
-			spacing: 0
+    header: ContrastToolBar {
+        height: 56 + tabBar.height
 
-			ActionButton {
-				text: "≣"
-				display: AbstractButton.TextOnly
-				onClicked: QuickPresenter.toggleDrawer()
-			}
+        GridLayout {
+            anchors.fill: parent
+            rowSpacing: 0
+            columnSpacing: 0
+            columns: 2
 
-			ToolBarLabel {
-				text: qsTr("Sample")
-				Layout.fillWidth: true
-			}
+            ActionButton {
+                text: "≣"
+                display: AbstractButton.TextOnly
+                onClicked: QuickPresenter.toggleDrawer()
+            }
 
-			MenuButton {
-				MenuItem {
-					text: qsTr("Another Input")
-					onTriggered: viewModel.getInput()
-				}
-				MenuItem {
-					text: qsTr("Add Files")
-					onTriggered: viewModel.getFiles()
-				}
-				MenuItem {
-					text: qsTr("Add Color")
-					onTriggered: viewModel.getColor()
-				}
-				MenuItem {
-					text: qsTr("Show Progress")
-					onTriggered: viewModel.showProgress()
-				}
+            ToolBarLabel {
+                text: qsTr("Main Tabs")
+                Layout.fillWidth: true
+                Layout.preferredHeight: 56
+            }
 
-				MenuSeparator {}
+            TabBar {
+                id: tabBar
+                Layout.columnSpan: 2
+                Layout.fillWidth: true
+                onCurrentIndexChanged: swipe.setCurrentIndex(currentIndex)
+                Material.background: Material.primary
 
-				MenuItem {
-					text: qsTr("About")
-					onTriggered: viewModel.about()
-				}
-			}
-		}
-	}
+                TabButton {
+                    text: "+"
+                    onClicked: viewModel.addTab();
+                }
+            }
+        }
+    }
 
-	PresenterProgress {}
+    PresenterProgress {}
 
-	Pane {
-		anchors.fill: parent
+    SwipeView {
+        id: swipe
+        anchors.fill: parent
+        onCurrentIndexChanged: tabBar.setCurrentIndex(currentIndex)
+    }
 
-		GridLayout {
-			columns: 2
-			anchors.fill: parent
+    Component {
+        id: _newTab
+        TabButton {
+            property TabItemViewModel viewModel: null
 
-			Label {
-				text: qsTr("Name:")
-			}
+            //text: viewModel.title
+        }
+    }
 
-			TextField {
-				id: nameEdit
-				Layout.fillWidth: true
-				selectByMouse: true
+    function presentTab(item) {
+        tabBar.insertItem(tabBar.count - 1, _newTab.createObject(tabBar, {viewModel: item.viewModel}));
+        item.parent = swipe;
+        swipe.addItem(item);
+        tabBar.setCurrentIndex(tabBar.count - 2);
+        return true;
+    }
 
-				MvvmBinding {
-					viewModel: sampleView.viewModel
-					view: nameEdit
-					viewModelProperty: "name"
-					viewProperty: "text"
-				}
-			}
-
-			Label {
-				text: qsTr("Active:")
-			}
-
-			Switch {
-				id: activeSwitch
-				Layout.alignment: Qt.AlignLeft
-
-				MvvmBinding {
-					viewModel: sampleView.viewModel
-					view: activeSwitch
-					viewModelProperty: "active"
-					viewProperty: "checked"
-				}
-			}
-
-			Label {
-				text: qsTr("Events:")
-			}
-
-			RowLayout {
-				Layout.fillWidth: true
-
-				Button {
-					text: qsTr("&Clear")
-					onClicked: viewModel.clearEvents()
-				}
-
-				Button {
-					text: qsTr("Get &Result")
-					onClicked: viewModel.getResult()
-				}
-			}
-
-			ListView {
-				id: lView
-				Layout.columnSpan: 2
-				Layout.fillWidth: true
-				Layout.fillHeight: true
-				clip: true
-
-				ScrollBar.vertical: ScrollBar {}
-
-				model: viewModel.eventsModel
-
-				delegate: ItemDelegate {
-					width: parent.width
-					text: viewModel.eventsModel.data(viewModel.eventsModel.index(index, 0))  //because "display" is not accessible
-				}
-			}
-		}
-	}
+    function afterPop() {
+        while(tabBar.count > 0)
+            tabBar.takeItem(0).destroy();
+        while(swipe.count > 0)
+            swipe.takeItem(0).destroy();
+    }
 }

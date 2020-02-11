@@ -27,7 +27,7 @@ class TabItemViewModel : public QtMvvm::ViewModel
 
 public:
 	Q_INVOKABLE explicit TabItemViewModel(QObject *parent = nullptr);
-	~TabItemViewModel();
+    ~TabItemViewModel() override;
 
 	QString title() const;
 

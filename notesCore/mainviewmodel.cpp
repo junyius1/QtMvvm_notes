@@ -33,6 +33,16 @@ void MainViewModel::setName(QString name)
 
 }
 
+void MainViewModel::addTab()
+{
+    QtMvvm::getInput<QString>(tr("New Tab"), tr("Enter a tab title:"), this, [this](QString res, bool ok) {
+        if(ok) {
+            show<TabItemViewModel>({
+                                       {QStringLiteral("title"), res}
+                                   });
+        }
+    });
+}
 
 void MainViewModel::showTabs()
 {

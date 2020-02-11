@@ -1,6 +1,6 @@
 #include "notesapp.h"
 #include "mainviewmodel.h"
-
+#include "drawerviewmodel.h"
 #include <QtCore/QCommandLineParser>
 
 notesApp::notesApp(QObject *parent) :
@@ -31,5 +31,6 @@ int notesApp::startApp(const QStringList &arguments)
 
     //show a viewmodel to complete the startup
     show<MainViewModel>();
+    show<DrawerViewModel>();
     return EXIT_SUCCESS;
 }

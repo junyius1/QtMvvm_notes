@@ -30,6 +30,8 @@ public Q_SLOTS:
 
 	void about();
 
+    void addTab();
+
 Q_SIGNALS:
 	void nameChanged(QString name);
 	void activeChanged(bool active);
