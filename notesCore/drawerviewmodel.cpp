@@ -27,7 +27,9 @@ void DrawerViewModel::open(int index)
 {
 	switch (index) {
 	case 0:
-		show<MainViewModel>();
+        show<MainTabItemViewModel>({
+                                       {QStringLiteral("title"), QStringLiteral("Root Tab")}
+                                   });
 		break;
 	case 1:
 		show<TabItemViewModel>({

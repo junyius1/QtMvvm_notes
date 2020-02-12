@@ -1,81 +1,45 @@
 #include "mainviewmodel.h"
-#include <QtCore/QTimer>
-#include <QtCore/QDebug>
 #include "message.h"
-#include "tabviewmodel.h"
-
-const QString MainViewModel::KeyActive = QStringLiteral("active");
-const QString MainViewModel::KeyNames = QStringLiteral("names");
 
 MainViewModel::MainViewModel(QObject *parent) :
-	ViewModel(parent),
-    _name()
+    ViewModel(parent)
 {}
 
 MainViewModel::~MainViewModel()
 {
-	qInfo(Q_FUNC_INFO);
-}
-
-QString MainViewModel::name() const
-{
-	return _name;
-}
-
-
-void MainViewModel::setName(QString name)
-{
-	if (_name == name)
-		return;
-
-	_name = std::move(name);
-	emit nameChanged(_name);
-
+    qInfo(Q_FUNC_INFO);
 }
 
 void MainViewModel::addTab()
 {
     QtMvvm::getInput<QString>(tr("New Tab"), tr("Enter a tab title:"), this, [this](QString res, bool ok) {
         if(ok) {
-            show<TabItemViewModel>({
+            show<MainTabItemViewModel>({
                                        {QStringLiteral("title"), res}
                                    });
         }
     });
 }
 
-void MainViewModel::showTabs()
+
+
+MainTabItemViewModel::MainTabItemViewModel(QObject *parent) :
+    ViewModel(parent),
+    _title(tr("No Title"))
+{}
+
+MainTabItemViewModel::~MainTabItemViewModel()
 {
-	show<TabItemViewModel>({
-							   {QStringLiteral("title"), QStringLiteral("Root Tab")}
-						   });
+    qInfo(Q_FUNC_INFO);
 }
 
-
-void MainViewModel::getInput()
+QString MainTabItemViewModel::title() const
 {
-	QtMvvm::getInput<int>(tr("Random input"),
-						  tr("Enter a number:"),
-						  this, [this](int res, bool ok) {
-
-	}, 42);
+    return _title;
 }
 
-
-void MainViewModel::about()
+void MainTabItemViewModel::onInit(const QVariantHash &params)
 {
-	QtMvvm::about(tr("QtMvvm sample application"),
-				  QStringLiteral("https://github.com/Skycoder42/QtMvvm"),
-				  tr("BSD 3 Clause"),
-				  QStringLiteral("https://github.com/Skycoder42/QtMvvm/blob/master/LICENSE"));
+    _title = params.value(QStringLiteral("title"), _title).toString();
+    emit titleChanged(_title);
 }
-
-void MainViewModel::onInit(const QVariantHash &params)
-{
-	qInfo() << Q_FUNC_INFO << params;
-
-	auto names = params.value(KeyNames).toStringList();
-	if(!names.isEmpty())
-		setName(names.join(QLatin1Char(' ')));
-}
-

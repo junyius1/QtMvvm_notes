@@ -57,9 +57,9 @@ Page {
     Component {
         id: _newTab
         TabButton {
-            property TabItemViewModel viewModel: null
+            property MainTabItemViewModel viewModel: null
 
-            //text: viewModel.title
+            text: viewModel.title
         }
     }
 

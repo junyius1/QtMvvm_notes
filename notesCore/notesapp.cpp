@@ -1,6 +1,7 @@
 #include "notesapp.h"
 #include "mainviewmodel.h"
 #include "drawerviewmodel.h"
+#include "tabviewmodel.h"
 #include <QtCore/QCommandLineParser>
 
 notesApp::notesApp(QObject *parent) :
@@ -30,7 +31,9 @@ int notesApp::startApp(const QStringList &arguments)
         return EXIT_SUCCESS;
 
     //show a viewmodel to complete the startup
-    show<MainViewModel>();
+    show<MainTabItemViewModel>({
+                                   {QStringLiteral("title"), QStringLiteral("Root Tab")}
+                               });
     show<DrawerViewModel>();
     return EXIT_SUCCESS;
 }

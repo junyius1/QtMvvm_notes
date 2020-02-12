@@ -7,5 +7,6 @@
         <file>DrawerView.qml</file>
         <file>TabItemView.qml</file>
         <file>TabView.qml</file>
+        <file>MainTabItemView.qml</file>
     </qresource>
 </RCC>
