@@ -13,13 +13,15 @@ HEADERS += \
 	notesapp.h \
         mainviewmodel.h \
         drawerviewmodel.h \
-        tabviewmodel.h
+        tabviewmodel.h \
+        clipboard.h
 
 SOURCES += \
 	notesapp.cpp \
         mainviewmodel.cpp \
         drawerviewmodel.cpp \
-        tabviewmodel.cpp
+        tabviewmodel.cpp \
+        clipboard.cpp
 
 TRANSLATIONS += notes_core_de.ts \
 	notes_core_template.ts

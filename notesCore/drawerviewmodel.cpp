@@ -9,8 +9,7 @@ DrawerViewModel::DrawerViewModel(QObject *parent) :
 {
 	_navModel->appendRow(new QStandardItem(tr("Main Sample")));
 	_navModel->appendRow(new QStandardItem(tr("Tab Sample")));
-	_navModel->appendRow(new QStandardItem(tr("View Container Sample")));
-	_navModel->appendRow(new QStandardItem(tr("Settings")));
+
 }
 
 DrawerViewModel::~DrawerViewModel()
