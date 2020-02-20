@@ -23,7 +23,7 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<TabViewModel>("com.cross.notes", 1, 1, "TabViewModel", QStringLiteral("ViewModels cannot be created"));
     qmlRegisterUncreatableType<TabItemViewModel>("com.cross.notes", 1, 1, "TabItemViewModel", QStringLiteral("ViewModels cannot be created"));
 
-    qmlRegisterType<Clipboard>("Clipboard",1,0,"Clipboard");
+    qmlRegisterType<Clipboard>("com.cross.notes",1,0,"Clipboard");
 
     QQmlApplicationEngine engine;
     engine.addImportPath((QStringLiteral("../qml")));

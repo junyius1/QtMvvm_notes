@@ -48,6 +48,14 @@ Page {
 
     PresenterProgress {}
 
+    Clipboard {
+        id:clipboard
+
+        function showDialog(text){
+            Message.getInput("New Note", "Content:", "QString", null, text)
+        }
+    }
+
     SwipeView {
         id: swipe
         anchors.fill: parent
