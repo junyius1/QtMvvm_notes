@@ -10,6 +10,18 @@ Page {
     id: tabView
     property MainViewModel viewModel: null
 
+    Connections {
+      target: Qt.application
+      onStateChanged: {
+          if(Qt.application.state === Qt.ApplicationActive)
+          {
+              clipboard.showDialog(clipboard.text())
+//              console.log(Qt.ApplicationActive," ",Qt.application.state )
+          }
+//          console.log("text=====", clipboard.text())
+      }
+    }
+
     header: ContrastToolBar {
         height: 56 + tabBar.height
 
@@ -50,12 +62,16 @@ Page {
 
     Clipboard {
         id:clipboard
+        property string preText
 
         function showDialog(text){
-            Message.getInput("New Note", "Content:", "QString", function(){
-                var item = swipe.itemAt(swipe.count - 1)
-                item.viewModel.addData(text)
-            }, text)
+            if(text !== preText){
+                preText = text;
+                Message.getInput("New Note", "Content:", "QString", function(){
+                    var item = swipe.itemAt(swipe.count - 1)
+                    item.viewModel.addData(text)
+                }, text)
+            }
         }
     }
 
