@@ -2,6 +2,7 @@
 #define MAINVIEWMODEL_H
 
 #include "viewmodel.h"
+#include <QtCore/QStringListModel>
 
 class MainViewModel : public QtMvvm::ViewModel
 {
@@ -22,6 +23,7 @@ class MainTabItemViewModel : public QtMvvm::ViewModel
     Q_OBJECT
 
     Q_PROPERTY(QString title READ title NOTIFY titleChanged)
+    Q_PROPERTY(QStringListModel* wordsModel READ wordsModel CONSTANT)
 
     QTMVVM_CONTAINER_VM(MainViewModel)
 
@@ -37,8 +39,13 @@ Q_SIGNALS:
 protected:
     void onInit(const QVariantHash &params) override;
 
+public Q_SLOTS:
+    void addData(const QString &data);
+    QStringListModel *wordsModel() const;
+
 private:
     QString _title;
+    QStringListModel *_wordsModel;
 };
 
 Q_DECLARE_METATYPE(MainViewModel*)

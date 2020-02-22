@@ -1,5 +1,6 @@
 import QtQuick 2.10
 import QtQuick.Controls 2.3
+import QtQuick.Layouts 1.3
 import de.framework.QtMvvm.Core 1.1
 import de.framework.QtMvvm.Quick 1.1
 import com.cross.notes 1.1
@@ -7,8 +8,25 @@ import com.cross.notes 1.1
 Pane {
 	property MainTabItemViewModel viewModel: null
 
-	Switch {
-		anchors.centerIn: parent
-		text: viewModel.title
-	}
+    GridLayout {
+        columns: 2
+        anchors.fill: parent
+
+        ListView {
+            id: lView
+            Layout.columnSpan: 2
+            Layout.fillWidth: true
+            Layout.fillHeight: true
+            clip: true
+
+            ScrollBar.vertical: ScrollBar {}
+
+            model: viewModel.wordsModel
+
+            delegate: ItemDelegate {
+                width: parent.width
+                text: viewModel.wordsModel.data(viewModel.wordsModel.index(index, 0))  //because "display" is not accessible
+            }
+        }
+    }
 }

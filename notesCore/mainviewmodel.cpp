@@ -1,5 +1,6 @@
 #include "mainviewmodel.h"
 #include "message.h"
+#include <QtCore/QDebug>
 
 MainViewModel::MainViewModel(QObject *parent) :
     ViewModel(parent)
@@ -21,11 +22,24 @@ void MainViewModel::addTab()
     });
 }
 
+void MainTabItemViewModel::addData(const QString &data)
+{
+    qDebug() << data;
+    auto row = _wordsModel->rowCount();
+    if(_wordsModel->insertRow(row))
+        _wordsModel->setData(_wordsModel->index(row), data);
+}
 
+
+QStringListModel *MainTabItemViewModel::wordsModel() const
+{
+    return _wordsModel;
+}
 
 MainTabItemViewModel::MainTabItemViewModel(QObject *parent) :
     ViewModel(parent),
-    _title(tr("No Title"))
+    _title(tr("No Title")),
+    _wordsModel(new QStringListModel(this))
 {}
 
 MainTabItemViewModel::~MainTabItemViewModel()

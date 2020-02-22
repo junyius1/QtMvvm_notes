@@ -52,7 +52,10 @@ Page {
         id:clipboard
 
         function showDialog(text){
-            Message.getInput("New Note", "Content:", "QString", null, text)
+            Message.getInput("New Note", "Content:", "QString", function(){
+                var item = swipe.itemAt(swipe.count - 1)
+                item.viewModel.addData(text)
+            }, text)
         }
     }
 
