@@ -8,5 +8,6 @@
         <file>TabItemView.qml</file>
         <file>TabView.qml</file>
         <file>MainTabItemView.qml</file>
+        <file>WordsDelegate.qml</file>
     </qresource>
 </RCC>

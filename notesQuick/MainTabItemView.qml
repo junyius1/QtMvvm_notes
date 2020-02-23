@@ -23,9 +23,8 @@ Pane {
 
             model: viewModel.wordsModel
 
-            delegate: ItemDelegate {
-                width: parent.width
-                text: viewModel.wordsModel.data(viewModel.wordsModel.index(index, 0))  //because "display" is not accessible
+            delegate: Component{
+                WordsDelegate {}
             }
         }
     }
