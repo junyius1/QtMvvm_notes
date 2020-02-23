@@ -23,9 +23,7 @@ Pane {
 
             model: viewModel.wordsModel
 
-            delegate: Component{
-                WordsDelegate {}
-            }
+            delegate: WordsDelegate {}
         }
     }
 }
