@@ -31,6 +31,7 @@ Page {
 				Layout.preferredHeight: 56
 			}
 
+            //tab view上面的工具条title条
 			TabBar {
 				id: tabBar
 				Layout.columnSpan: 2
@@ -48,6 +49,7 @@ Page {
 
 	PresenterProgress {}
 
+    //tab集合view
 	SwipeView {
 		id: swipe
 		anchors.fill: parent
@@ -63,6 +65,7 @@ Page {
 		}
 	}
 
+    //显示tab
 	function presentTab(item) {
 		tabBar.insertItem(tabBar.count - 1, _newTab.createObject(tabBar, {viewModel: item.viewModel}));
 		item.parent = swipe;

@@ -1,7 +1,7 @@
 #include "notesapp.h"
 #include "mainviewmodel.h"
 #include "drawerviewmodel.h"
-#include "tabviewmodel.h"
+#include "notesviewmodel.h"
 #include <QtCore/QCommandLineParser>
 
 notesApp::notesApp(QObject *parent) :

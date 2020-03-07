@@ -1,7 +1,7 @@
 #include "drawerviewmodel.h"
 
 #include "mainviewmodel.h"
-#include "tabviewmodel.h"
+#include "notesviewmodel.h"
 
 DrawerViewModel::DrawerViewModel(QObject *parent) :
 	ViewModel(parent),
@@ -31,7 +31,7 @@ void DrawerViewModel::open(int index)
                                    });
 		break;
 	case 1:
-		show<TabItemViewModel>({
+        show<NotesItemViewModel>({
 								   {QStringLiteral("title"), QStringLiteral("Root Tab")}
 							   });
 		break;

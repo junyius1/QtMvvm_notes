@@ -1,5 +1,6 @@
 TEMPLATE = subdirs
 
+QT += sql
 
 SUBDIRS += \
         notesCore \

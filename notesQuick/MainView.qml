@@ -43,6 +43,7 @@ Page {
                 Layout.preferredHeight: 56
             }
 
+            //tab view上面的工具条title条
             TabBar {
                 id: tabBar
                 Layout.columnSpan: 2
@@ -67,14 +68,17 @@ Page {
         function showDialog(text){
             if(text !== preText){
                 preText = text;
+                // 弹出输入框
                 Message.getInput("New Note", "Content:", "QString", function(){
                     var item = swipe.itemAt(swipe.count - 1)
+                    //界面触发添加text到MainTabItemViewModel到notesmodel
                     item.viewModel.addData(text)
                 }, text)
             }
         }
     }
 
+    //tab 集合view
     SwipeView {
         id: swipe
         anchors.fill: parent

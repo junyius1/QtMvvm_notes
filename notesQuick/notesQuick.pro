@@ -1,6 +1,6 @@
 TEMPLATE = app
 
-QT += quick mvvmcore mvvmquick
+QT += quick mvvmcore mvvmquick sql
 CONFIG += c++14
 
 TARGET = notesQuick

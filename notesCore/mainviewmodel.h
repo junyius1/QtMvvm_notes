@@ -3,7 +3,9 @@
 
 #include "viewmodel.h"
 #include <QtCore/QStringListModel>
+#include "notesmodel.h"
 
+//notes（记事本）的viewmodel
 class MainViewModel : public QtMvvm::ViewModel
 {
     Q_OBJECT
@@ -18,12 +20,13 @@ public Q_SLOTS:
     void addTab();
 };
 
+//notes（记事本）的tab 的viewmodel（暂时只有一个tab）
 class MainTabItemViewModel : public QtMvvm::ViewModel
 {
     Q_OBJECT
 
     Q_PROPERTY(QString title READ title NOTIFY titleChanged)
-    Q_PROPERTY(QStringListModel* wordsModel READ wordsModel CONSTANT)
+    Q_PROPERTY(QStandardItemModel* wordsModel READ wordsModel CONSTANT)
 
     QTMVVM_CONTAINER_VM(MainViewModel)
 
@@ -40,12 +43,14 @@ protected:
     void onInit(const QVariantHash &params) override;
 
 public Q_SLOTS:
+    //note（记事本）触发添加对话框后点击确定触发添加item
     void addData(const QString &data);
-    QStringListModel *wordsModel() const;
+    //这个是note（记事本）的word列表
+    QStandardItemModel *wordsModel() const;
 
 private:
     QString _title;
-    QStringListModel *_wordsModel;
+    NotesModel *_notesModel;
 };
 
 Q_DECLARE_METATYPE(MainViewModel*)

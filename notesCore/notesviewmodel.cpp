@@ -1,44 +1,43 @@
-#include "tabviewmodel.h"
+#include "notesviewmodel.h"
 #include "message.h"
 
-TabViewModel::TabViewModel(QObject *parent) :
+NotesViewModel::NotesViewModel(QObject *parent) :
 	ViewModel(parent)
 {}
 
-TabViewModel::~TabViewModel()
+NotesViewModel::~NotesViewModel()
 {
 	qInfo(Q_FUNC_INFO);
 }
 
-void TabViewModel::addTab()
+//notes的viewmodel添加tab
+void NotesViewModel::addTab()
 {
 	QtMvvm::getInput<QString>(tr("New Tab"), tr("Enter a tab title:"), this, [this](QString res, bool ok) {
 		if(ok) {
-			show<TabItemViewModel>({
+            show<NotesItemViewModel>({
 									   {QStringLiteral("title"), res}
 								   });
 		}
 	});
 }
 
-
-
-TabItemViewModel::TabItemViewModel(QObject *parent) :
+NotesItemViewModel::NotesItemViewModel(QObject *parent) :
 	ViewModel(parent),
 	_title(tr("No Title"))
 {}
 
-TabItemViewModel::~TabItemViewModel()
+NotesItemViewModel::~NotesItemViewModel()
 {
 	qInfo(Q_FUNC_INFO);
 }
 
-QString TabItemViewModel::title() const
+QString NotesItemViewModel::title() const
 {
 	return _title;
 }
 
-void TabItemViewModel::onInit(const QVariantHash &params)
+void NotesItemViewModel::onInit(const QVariantHash &params)
 {
 	_title = params.value(QStringLiteral("title"), _title).toString();
 	emit titleChanged(_title);
