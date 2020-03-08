@@ -39,6 +39,7 @@ public slots:
     //添加一个条目到一个叫_curNoteName的Note表（数据库和内存）里面
     bool addData(const QString &data);
     const QString getCurNodeName();
+    QString getValue(const QString &key);
 
 private:
     static NotesModel *_instance;

@@ -18,7 +18,7 @@ NotesModel::NotesModel(QObject *parent) : QObject(parent),
             _configsMap[_sql.value(keyCol).toString()] = _sql.value(valueCol).toString();
 
     }
-    _curNoteName = _configsMap[QLatin1String(R"(defaultNote)")];
+    _curNoteName = getValue(QLatin1String(R"(defaultNote)"));
     if(selectTableAllData(_sql, NOTES_TABLE))
     {
         QSqlRecord rec = _sql.record();
@@ -29,11 +29,18 @@ NotesModel::NotesModel(QObject *parent) : QObject(parent),
         int idCol = rec.indexOf(QLatin1String(R"(id)"));
         int row = 0;
         while (_sql.next()){
-            _noteWords->setItem(row, 0, new QStandardItem(_sql.value(idCol).toString()));
-            _noteWords->setItem(row, 1, new QStandardItem(_sql.value(noteCol).toString()));
+            _noteWords->setItem(row, 0, new QStandardItem(_sql.value(noteCol).toString()));
+            _noteWords->setItem(row, 1, new QStandardItem(_sql.value(idCol).toString()));
+            row ++;
         }
     }
+    _curNoteName = _curNoteName==QLatin1String(R"()")?QLatin1String(R"(default1)"):_curNoteName;
     changeWordsModel(_curNoteName);
+}
+
+QString NotesModel::getValue(const QString &key)
+{
+    return _configsMap[key];
 }
 
 //更新当前的Note表的名字
@@ -71,20 +78,21 @@ bool NotesModel::changeWordsModel(const QString &noteName)
         int contentCol = rec.indexOf(QLatin1String(R"(content)"));
         int row = 0;
         while (_sql.next()){
-            _noteWords->setItem(row, 0, new QStandardItem(_sql.value(idCol).toString()));
-            _noteWords->setItem(row, 1, new QStandardItem(_sql.value(contentCol).toString()));
+            _noteWords->setItem(row, 0, new QStandardItem(_sql.value(contentCol).toString()));
+            _noteWords->setItem(row, 1, new QStandardItem(_sql.value(idCol).toString()));
+            row++;
         }
-        return true;
     } else {
         QSqlError err = createTable(_sql, noteName);
         if(err.isValid())
         {
             qDebug() << err.databaseText();
             return false;
-        } else{
-            return true;
         }
     }
+    updateCurNoteName(noteName);
+    updateConfigs(_sql, QLatin1String(R"(defaultNote)"), noteName);
+    return true;
 }
 
 //添加一个条目到一个叫_curNoteName的Note表（数据库和内存）里面

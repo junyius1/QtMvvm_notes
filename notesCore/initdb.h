@@ -57,7 +57,7 @@ const auto NOTES_TABLE = QLatin1String(R"(notes)");
 
 //创建configs表
 const auto CREATE_CONFIGS_SQL = QLatin1String(R"(
-    create table configs(id integer primary key, value varchar)
+    create table configs(key varchar primary key, value varchar)
     )");
 
 //插入configs表
@@ -81,9 +81,9 @@ const auto INSERT_NOTES_SQL = QLatin1String(R"(
     )");
 
 //创建words表
-const auto CREATE_CONTENT_TABLE_SQL = QLatin1String(R"(
-    create table ?(id integer primary key, content varchar)
-    )");
+const auto CREATE_CONTENT_TABLE_SQL = QString(QLatin1String(R"(
+    create table %1(id integer primary key, content varchar)
+    )"));
 
 //words表结构是id, content，名字在notes表里面
 const auto INSERT_CONTENT_TABLE_SQL = QString(QLatin1String(R"(
@@ -91,9 +91,9 @@ const auto INSERT_CONTENT_TABLE_SQL = QString(QLatin1String(R"(
     )"));
 
 //从words表中选择所有的数据
-const auto SELECT_ALL_DATA_FROM_TABLE = QLatin1String(R"(
-    select * from ?
-    )");
+const auto SELECT_ALL_DATA_FROM_TABLE = QString(QLatin1String(R"(
+    select * from %1
+    )"));
 
 //插入notes表
 bool insertNotes(QSqlQuery &q, const QString &noteName);

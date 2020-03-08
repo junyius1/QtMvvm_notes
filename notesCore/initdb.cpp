@@ -84,8 +84,8 @@ bool insertConfigs(QSqlQuery &q, const QString &key, const QString &value)
 //插入content到名字叫table的表，这个表的结构是words
 bool insertTableContent(QSqlQuery &q, const QString &table, const QString &content)
 {
-    INSERT_CONTENT_TABLE_SQL.arg(table);
-    if (!q.prepare(INSERT_NOTES_SQL)){
+    QString str = INSERT_CONTENT_TABLE_SQL.arg(table);
+    if (!q.prepare(str)){
         notes::debug(q.lastError().text());
         return false;
     }
@@ -96,18 +96,20 @@ bool insertTableContent(QSqlQuery &q, const QString &table, const QString &conte
 //选择名字叫tableName的表所有数据，这个表的结构是words
 bool selectTableAllData(QSqlQuery &q, const QString &tableName)
 {
-    if (!q.prepare(SELECT_ALL_DATA_FROM_TABLE))
+    QString str = SELECT_ALL_DATA_FROM_TABLE.arg(tableName);
+    if (!q.prepare(str))
         return false;
-    q.addBindValue(tableName);
     return q.exec();
 }
 
 //创建名字为table的表
 QSqlError createTable(QSqlQuery &q, const QString &table)
 {
-    if (!q.prepare(CREATE_CONTENT_TABLE_SQL))
+    QString str = CREATE_CONTENT_TABLE_SQL.arg(table);
+    if (!q.prepare(str)){
+        notes::debug(q.lastError().text());
         return q.lastError();
-    q.addBindValue(table);
+    }
     q.exec();
     return QSqlError();
 }
@@ -135,6 +137,8 @@ QSqlError initDb(QSqlQuery &q)
 
     if (!q.exec(CREATE_CONFIGS_SQL))
         return q.lastError();
+
+    insertConfigs(q, QLatin1String(R"(defaultNote)"), QLatin1String(R"()"));
 
     return QSqlError();
 }
