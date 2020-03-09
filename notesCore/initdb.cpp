@@ -120,9 +120,14 @@ QSqlError initDb(QSqlQuery &q)
     QSqlDatabase db;
     // 建立和SQlite数据库的连接
     db = QSqlDatabase::addDatabase(QLatin1String(R"(QSQLITE)"));
+#ifdef Q_OS_IOS
+    QString dbName = QLatin1String(R"(notes.db)");
+    QString dbLocation = QStandardPaths::writableLocation(QStandardPaths::DocumentsLocation);
     // 设置数据库文件的名字
+    db.setDatabaseName(dbLocation+QLatin1String(R"(/notes.db)"));
+#else
     db.setDatabaseName(QLatin1String(R"(notes.db)"));
-
+#endif
     if (!db.open())
         return db.lastError();
 
