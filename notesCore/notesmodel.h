@@ -21,7 +21,7 @@ public slots:
         return _noteWords;
     }
     //notes（笔记目录）表的内存结构
-    const QStandardItemModel *noteCatalogs() const
+    QStandardItemModel *noteCatalogs() const
     {
         return _noteCatalogs;
     }

@@ -29,12 +29,17 @@ NotesModel::NotesModel(QObject *parent) : QObject(parent),
         int idCol = rec.indexOf(QLatin1String(R"(id)"));
         int row = 0;
         while (_sql.next()){
-            _noteWords->setItem(row, 0, new QStandardItem(_sql.value(noteCol).toString()));
-            _noteWords->setItem(row, 1, new QStandardItem(_sql.value(idCol).toString()));
+            _noteCatalogs->setItem(row, 0, new QStandardItem(_sql.value(noteCol).toString()));
+            _noteCatalogs->setItem(row, 1, new QStandardItem(_sql.value(idCol).toString()));
             row ++;
         }
     }
-    _curNoteName = _curNoteName==QLatin1String(R"()")?QLatin1String(R"(default1)"):_curNoteName;
+    if(_curNoteName == QLatin1String(""))
+    {
+        auto str = QLatin1String(R"(defaultDB)");
+        addNoteName(str);
+        _curNoteName = str;
+    }
     changeWordsModel(_curNoteName);
 }
 

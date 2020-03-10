@@ -7,8 +7,8 @@ DrawerViewModel::DrawerViewModel(QObject *parent) :
 	ViewModel(parent),
 	_navModel(new QStandardItemModel(0, 1, this))
 {
-	_navModel->appendRow(new QStandardItem(tr("Main Sample")));
-	_navModel->appendRow(new QStandardItem(tr("Tab Sample")));
+    _navModel->appendRow(new QStandardItem(tr("Catalog")));
+    _navModel->appendRow(new QStandardItem(tr("Note")));
 
 }
 
@@ -26,12 +26,12 @@ void DrawerViewModel::open(int index)
 {
 	switch (index) {
 	case 0:
-        show<MainTabItemViewModel>({
+        show<NotesTabItemViewModel>({
                                        {QStringLiteral("title"), QStringLiteral("Root Tab")}
                                    });
 		break;
 	case 1:
-        show<NotesItemViewModel>({
+        show<MainTabItemViewModel>({
 								   {QStringLiteral("title"), QStringLiteral("Root Tab")}
 							   });
 		break;

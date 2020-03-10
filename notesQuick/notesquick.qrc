@@ -5,9 +5,9 @@
     <qresource prefix="/qtmvvm/views">
         <file>MainView.qml</file>
         <file>DrawerView.qml</file>
-        <file>TabItemView.qml</file>
-        <file>TabView.qml</file>
+        <file>NotesView.qml</file>
         <file>MainTabItemView.qml</file>
         <file>WordsDelegate.qml</file>
+        <file>NotesTabItemView.qml</file>
     </qresource>
 </RCC>

@@ -19,8 +19,8 @@ HEADERS += \
         clipboard.h \
         initdb.h \
     notesmodel.h \
-        notesviewmodel.h \
-        common.h
+        common.h \
+    notesviewmodel.h
 
 SOURCES += \
 	notesapp.cpp \

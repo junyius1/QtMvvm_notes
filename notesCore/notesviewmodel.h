@@ -2,45 +2,55 @@
 #define NOTESVIEWMODEL_H
 
 #include "viewmodel.h"
+#include <QtCore/QStringListModel>
+#include "notesmodel.h"
 
-//所有的笔记ViewModel
+//notes（记事本）的viewmodel
 class NotesViewModel : public QtMvvm::ViewModel
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	QTMVVM_SINGLETON
+    QTMVVM_SINGLETON
 
 public:
     Q_INVOKABLE explicit NotesViewModel(QObject *parent = nullptr);
     ~NotesViewModel();
 
 public Q_SLOTS:
-	void addTab();
+    void addTab();
 };
 
-//所有的笔记列表Tab ViewModel（有且只有一个Tab）
-class NotesItemViewModel : public QtMvvm::ViewModel
+//notes（记事本）的tab 的viewmodel（暂时只有一个tab）
+class NotesTabItemViewModel : public QtMvvm::ViewModel
 {
-	Q_OBJECT
+    Q_OBJECT
 
-	Q_PROPERTY(QString title READ title NOTIFY titleChanged)
+    Q_PROPERTY(QString title READ title NOTIFY titleChanged)
+    Q_PROPERTY(QStandardItemModel* notesModel READ notesModel CONSTANT)
 
     QTMVVM_CONTAINER_VM(NotesViewModel)
 
 public:
-    Q_INVOKABLE explicit NotesItemViewModel(QObject *parent = nullptr);
-    ~NotesItemViewModel() override;
+    Q_INVOKABLE explicit NotesTabItemViewModel(QObject *parent = nullptr);
+    ~NotesTabItemViewModel() override;
 
-	QString title() const;
+    QString title() const;
 
 Q_SIGNALS:
-	void titleChanged(QString title);
+    void titleChanged(QString title);
 
 protected:
-	void onInit(const QVariantHash &params) override;
+    void onInit(const QVariantHash &params) override;
+
+public Q_SLOTS:
+    //note（记事本）触发添加对话框后点击确定触发添加item
+    void addData(const QString &data);
+    //这个是note（记事本）的word列表
+    QStandardItemModel *notesModel() const;
 
 private:
-	QString _title;
+    QString _title;
+    NotesModel *_notesModel;
 };
 
 Q_DECLARE_METATYPE(NotesViewModel*)
