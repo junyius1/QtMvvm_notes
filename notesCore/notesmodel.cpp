@@ -34,12 +34,12 @@ NotesModel::NotesModel(QObject *parent) : QObject(parent),
             row ++;
         }
     }
-    if(_curNoteName == QLatin1String(""))
-    {
-        auto str = QLatin1String(R"(defaultDB)");
-        addNoteName(str);
-        _curNoteName = str;
-    }
+//    if(_curNoteName == QLatin1String(""))
+//    {
+//        auto str = QLatin1String(R"(defaultDB)");
+//        addNoteName(str);
+//        _curNoteName = str;
+//    }
     changeWordsModel(_curNoteName);
 }
 
@@ -110,7 +110,12 @@ bool NotesModel::addData(const QString &data)
 //添加note数据库名字
 bool NotesModel::addNoteName(const QString &noteName)
 {
-    return insertNotes(_sql, noteName);
+    if(_curNoteName == noteName) return false;
+    if( insertNotes(_sql, noteName))
+    {
+        return changeWordsModel(noteName);
+    }
+    return true;
 }
 
 NotesModel * NotesModel::instance()
@@ -120,5 +125,6 @@ NotesModel * NotesModel::instance()
         return _instance;
     }
 
-    return new NotesModel();
+    _instance = new NotesModel();
+    return _instance;
 }

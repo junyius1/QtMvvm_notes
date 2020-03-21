@@ -13,6 +13,7 @@ public:
     static NotesModel * instance();
 
 signals:
+    void enterNoteName();
 
 public slots:
     //words表的内存结构

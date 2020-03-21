@@ -7,6 +7,7 @@
 #include <notesviewmodel.h>
 #include "quickpresenter.h"
 #include "clipboard.h"
+#include <QQmlContext>
 
 QTMVVM_REGISTER_CORE_APP(notesApp)
 
@@ -15,18 +16,20 @@ int main(int argc, char *argv[])
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     // If you want to support file dialogs on platforms other then android, use a QApplication instead (and add QT += widgets to the pro file)
     QGuiApplication app(argc, argv);
+    char url[] = "com.cross.notes";
 
     QtMvvm::QuickPresenter::getInputViewFactory(); //Workaround for QTBUG-69963
-    qmlRegisterUncreatableType<MainViewModel>("com.cross.notes", 1, 1, "MainViewModel", "ViewModels cannot be created!");
-    qmlRegisterUncreatableType<MainTabItemViewModel>("com.cross.notes", 1, 1, "MainTabItemViewModel", "ViewModels cannot be created!");
-    qmlRegisterUncreatableType<DrawerViewModel>("com.cross.notes", 1, 1, "DrawerViewModel", QStringLiteral("ViewModels cannot be created"));
-    qmlRegisterUncreatableType<NotesViewModel>("com.cross.notes", 1, 1, "NotesViewModel", QStringLiteral("ViewModels cannot be created"));
-    qmlRegisterUncreatableType<NotesTabItemViewModel>("com.cross.notes", 1, 1, "NotesTabItemViewModel", QStringLiteral("ViewModels cannot be created"));
+    qmlRegisterUncreatableType<MainViewModel>(url, 1, 1, "MainViewModel", QStringLiteral("ViewModels cannot be created!"));
+    qmlRegisterUncreatableType<MainTabItemViewModel>(url, 1, 1, "MainTabItemViewModel", QStringLiteral("ViewModels cannot be created!"));
+    qmlRegisterUncreatableType<DrawerViewModel>(url, 1, 1, "DrawerViewModel", QStringLiteral("ViewModels cannot be created"));
+    qmlRegisterUncreatableType<NotesViewModel>(url, 1, 1, "NotesViewModel", QStringLiteral("ViewModels cannot be created"));
+    qmlRegisterUncreatableType<NotesTabItemViewModel>(url, 1, 1, "NotesTabItemViewModel", QStringLiteral("ViewModels cannot be created"));
 
-    qmlRegisterType<Clipboard>("com.cross.notes",1,0,"Clipboard");
+    qmlRegisterType<Clipboard>(url,1,0,"Clipboard");
 
     QQmlApplicationEngine engine;
     engine.addImportPath((QStringLiteral("../qml")));
+    engine.rootContext()->setContextProperty(QLatin1String(R"(notesModel)"), NotesModel::instance());
     engine.load(QUrl(QStringLiteral("qrc:/App.qml")));
     if (engine.rootObjects().isEmpty())
         return -1;

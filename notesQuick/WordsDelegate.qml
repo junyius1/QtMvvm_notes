@@ -50,18 +50,50 @@
 
 import QtQuick 2.2
 
-Column {
+Component {
     id: delegate
-    width: delegate.ListView.view.width
-    spacing: 8
 
-    Text {
-        id: descriptionText
-        text: delegate.ListView.view.model.data(delegate.ListView.view.model.index(index, 0))
-        width: parent.width
-        wrapMode: Text.WordWrap
-        font.pixelSize: 14
-        textFormat: Text.StyledText
-        horizontalAlignment: Qt.AlignLeft
+    Rectangle {
+        id: wrapper
+        width: wrapper.ListView.view.width
+        height: descriptionText.height
+        color: {
+            if(ListView.isCurrentItem){
+                highlight.color = palette.text;
+                descriptionText.color = palette.highlightedText;
+            } else{
+                highlight.color = palette.highlightedText;
+                descriptionText.color = palette.text;
+            }
+
+            return color
+        }
+
+        SystemPalette {
+            id: palette
+        }
+
+        Rectangle {
+            id: highlight
+            anchors.fill: parent
+        }
+
+        Text {
+            id: descriptionText
+            text: wrapper.ListView.view.model.data(wrapper.ListView.view.model.index(index, 0))
+            width: parent.width
+            wrapMode: Text.WordWrap
+            font.pixelSize: 14
+            textFormat: Text.StyledText
+            horizontalAlignment: Qt.AlignLeft
+        }
+
+        MouseArea {
+            id: mouseRegion
+            anchors.fill: parent
+            onPressed: {
+                wrapper.ListView.view.currentIndex = index;
+            }
+        }
     }
 }

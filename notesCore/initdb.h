@@ -70,6 +70,11 @@ const auto UPDATE_CONFIGS_SQL = QLatin1String(R"(
     update configs set value = ? where key = ?
     )");
 
+//选择notes
+const auto SELECT_NOTES_SQL = QLatin1String(R"(
+    select * from notes where note = ?
+    )");
+
 //创建notes
 const auto CREATE_NOTES_SQL = QLatin1String(R"(
     create table notes(id integer primary key, note varchar)

@@ -66,13 +66,19 @@ Page {
         property string preText
 
         function showDialog(text){
+            if(notesModel.getCurNodeName()===""){
+                if(!notesModel.inputDialg)
+                    notesModel.enterNoteName();
+                return;
+            }
             if(text !== preText){
                 preText = text;
                 // 弹出输入框
-                Message.getInput("New Note", "Content:", "QString", function(){
+                Message.getInput("New Note", "Content:", "QString", function(result){
+                    if(result === undefined) return;
                     var item = swipe.itemAt(swipe.count - 1)
                     //界面触发添加text到MainTabItemViewModel到notesmodel
-                    item.viewModel.addData(text)
+                    item.viewModel.addData(result)
                 }, text)
             }
         }
@@ -91,6 +97,18 @@ Page {
             property MainTabItemViewModel viewModel: null
 
             text: viewModel.title
+        }
+    }
+
+    NotesModel{
+        id: testModel
+    }
+
+    Loader{
+        id: testLoader
+        sourceComponent: testModel
+        onLoaded: {
+            notesModel.enterNoteName()
         }
     }
 

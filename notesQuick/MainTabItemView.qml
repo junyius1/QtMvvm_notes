@@ -18,6 +18,7 @@ Pane {
             Layout.fillWidth: true
             Layout.fillHeight: true
             clip: true
+            currentIndex: -1
 
             ScrollBar.vertical: ScrollBar {}
 

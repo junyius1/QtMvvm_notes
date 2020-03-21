@@ -52,13 +52,27 @@
 #include <initdb.h>
 #include <common.h>
 
-//插入notes表
-bool insertNotes(QSqlQuery &q, const QString &noteName)
+bool selectNotes(QSqlQuery &q, const QString &noteName)
 {
-    if (!q.prepare(INSERT_NOTES_SQL))
+    if (!q.prepare(SELECT_NOTES_SQL))
         return false;
     q.addBindValue(noteName);
     return q.exec();
+}
+
+//插入notes表
+bool insertNotes(QSqlQuery &q, const QString &noteName)
+{
+    if(selectNotes(q, noteName))
+    {
+        qDebug() << q.isValid() << "==size==" << q.size();
+        if(q.size() >0)return true;
+        if (!q.prepare(INSERT_NOTES_SQL))
+            return false;
+        q.addBindValue(noteName);
+        return q.exec();
+    }
+    return true;
 }
 
 //通过key去设置configs表的value
