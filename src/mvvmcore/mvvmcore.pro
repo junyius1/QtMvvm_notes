@@ -48,17 +48,25 @@ include(../QPluginFactory/qpluginfactory.pri)
     load(qt_module)
 
     win32{
-        OUTLIBPWD =../../lib/Qt5MvvmCore.lib
-        OUTLIBPWD=$$replace(OUTLIBPWD, "\/", "\\")
-        OUTLIBDPWD = ../../lib/Qt5MvvmCored.lib
-        OUTLIBDPWD=$$replace(OUTLIBDPWD, "\/", "\\")
+        CONFIG(release, debug|release):{
+            OUTLIBPWD =../../lib/Qt5MvvmCore.lib
+            OUTLIBPWD=$$replace(OUTLIBPWD, "\/", "\\")
+            QMAKE_PRE_LINK = $$QMAKE_DEL_FILE $$OUTLIBPWD
+        }
 
-        extralib.target = extra
-        extralib.commands = $$QMAKE_DEL_FILE $$OUTLIBPWD; \
-                            $$QMAKE_DEL_FILE $$OUTLIBDPWD; \
+        CONFIG(debug, debug|release):{
+            OUTLIBDPWD = ../../lib/Qt5MvvmCored.lib
+            OUTLIBDPWD=$$replace(OUTLIBDPWD, "\/", "\\")
+            QMAKE_PRE_LINK = $$QMAKE_DEL_FILE $$OUTLIBDPWD
+        }
 
-        extralib.depends =
-        QMAKE_EXTRA_TARGETS += extralib
-        PRE_TARGETDEPS = extra
+
+#        extralib.target = extra
+#        extralib.commands = $$QMAKE_DEL_FILE $$OUTLIBPWD; \
+#                            $$QMAKE_DEL_FILE $$OUTLIBDPWD; \
+
+#        extralib.depends =
+#        QMAKE_EXTRA_TARGETS += extralib
+#        PRE_TARGETDEPS = extra
     }
 }
