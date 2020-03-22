@@ -228,6 +228,7 @@ QuickPresenter *QuickPresenterPrivate::currentPresenter()
 	} catch (QTMVVM_EXCEPTION_BASE &e) {
 		qFatal("%s", e.what());
 	}
+    return nullptr;
 }
 
 void QuickPresenterPrivate::setQmlPresenter(QObject *presenter)

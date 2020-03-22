@@ -2,7 +2,7 @@ TARGET = QtMvvmCore
 
 QT = core gui
 
-TEMPLATE=lib
+#TEMPLATE=lib
 #CONFIG += dll
 CONFIG += c++14
 
@@ -45,5 +45,20 @@ DEFINES+=QT_BUILD_MVVMCORE_LIB
 include(../QPluginFactory/qpluginfactory.pri)
 
 !android{
-load(qt_module)
+    load(qt_module)
+
+    win32{
+        OUTLIBPWD =../../lib/Qt5MvvmCore.lib
+        OUTLIBPWD=$$replace(OUTLIBPWD, "\/", "\\")
+        OUTLIBDPWD = ../../lib/Qt5MvvmCored.lib
+        OUTLIBDPWD=$$replace(OUTLIBDPWD, "\/", "\\")
+
+        extralib.target = extra
+        extralib.commands = $$QMAKE_DEL_FILE $$OUTLIBPWD; \
+                            $$QMAKE_DEL_FILE $$OUTLIBDPWD; \
+
+        extralib.depends =
+        QMAKE_EXTRA_TARGETS += extralib
+        PRE_TARGETDEPS = extra
+    }
 }

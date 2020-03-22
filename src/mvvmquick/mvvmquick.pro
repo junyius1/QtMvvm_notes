@@ -2,7 +2,7 @@ TARGET = QtMvvmQuick
 
 INCLUDEPATH += $$PWD/../mvvmcore
 
-TEMPLATE=lib
+#TEMPLATE=lib
 CONFIG += c++14
 
 QT = core gui qml quick svg mvvmcore
@@ -44,6 +44,19 @@ win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../mvvmcore/release/ -
 else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../mvvmcore/debug/ -lQtMvvmCore
 else:unix: LIBS += -L$$OUT_PWD/../mvvmcore/ -lQtMvvmCore
 } else {
-load(qt_module)
+    load(qt_module)
+    win32{
+        OUTLIBPWD =../../lib/Qt5MvvmQuick.lib
+        OUTLIBPWD=$$replace(OUTLIBPWD, "\/", "\\")
+        OUTLIBDPWD = ../../lib/Qt5MvvmQuickd.lib
+        OUTLIBDPWD=$$replace(OUTLIBDPWD, "\/", "\\")
 
+        extralib.target = extra
+        extralib.commands = $$QMAKE_DEL_FILE $$OUTLIBPWD; \
+                            $$QMAKE_DEL_FILE $$OUTLIBDPWD; \
+
+        extralib.depends =
+        QMAKE_EXTRA_TARGETS += extralib
+        PRE_TARGETDEPS = extra
+    }
 }

@@ -5,6 +5,7 @@ SUBDIRS += mvvmcore \
         imports
 
 mvvmquick.depends += mvvmcore
+imports.depends += mvvmquick
 #imports.CONFIG += no_lrelease_target
 
 #prepareRecursiveTarget(lrelease)
