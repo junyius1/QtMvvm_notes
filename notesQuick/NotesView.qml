@@ -38,7 +38,7 @@ Page {
             }
 
             ToolBarLabel {
-                text: qsTr("Catalog")
+                text: qsTr("Catalog");
                 Layout.fillWidth: true
                 Layout.preferredHeight: 56
             }

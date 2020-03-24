@@ -9,6 +9,7 @@ import com.cross.notes 1.1
 Page {
     id: tabView
     property MainViewModel viewModel: null
+    readonly property bool presentAsRoot: true
 
     Connections {
       target: Qt.application
@@ -38,7 +39,7 @@ Page {
             }
 
             ToolBarLabel {
-                text: qsTr("Note")
+                text: qsTr("Note");
                 Layout.fillWidth: true
                 Layout.preferredHeight: 56
             }

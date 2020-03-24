@@ -10,7 +10,7 @@ class MainViewModel : public QtMvvm::ViewModel
 {
     Q_OBJECT
 
-    QTMVVM_SINGLETON
+//    QTMVVM_SINGLETON
 
 public:
     Q_INVOKABLE explicit MainViewModel(QObject *parent = nullptr);

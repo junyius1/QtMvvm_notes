@@ -16,6 +16,7 @@ void notesApp::performRegistrations()
 {
     //if you are using a qt resource (e.g. "notescore.qrc"), initialize it here
     //Q_INIT_RESOURCE(notescore);
+    QLoggingCategory::setFilterRules(QStringLiteral("qtmvvm.debug=true"));
 }
 
 int notesApp::startApp(const QStringList &arguments)
