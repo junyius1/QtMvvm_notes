@@ -231,6 +231,8 @@ void QQmlQuickPresenter::addObject(QQmlComponent *component, ViewModel *viewMode
 	viewModel->setParent(item);
 	viewModel->onInit(params);
 	component->completeCreate();
+    if(!item->parent())
+        QQmlEngine::setObjectOwnership(item, QQmlEngine::JavaScriptOwnership);
 
 	auto presented = false;
 	auto cPresenter = QuickPresenterPrivate::currentPresenter();
@@ -240,8 +242,6 @@ void QQmlQuickPresenter::addObject(QQmlComponent *component, ViewModel *viewMode
 		presented = cPresenter->presentToQml(_qmlPresenter, item);
 
 	if(presented) {
-		if(!item->parent())
-			QQmlEngine::setObjectOwnership(item, QQmlEngine::JavaScriptOwnership);
 		logDebug() << "Presented" << viewModel->metaObject()->className()
 				   << "with view" << item->metaObject()->className();
 	} else {

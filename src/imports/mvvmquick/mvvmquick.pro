@@ -27,14 +27,10 @@ INCLUDEPATH += $$PWD/../../mvvmcore $$PWD/../../mvvmquick
 
 CONTROLS_QML_FILES += \
         QtMvvmApp.qml \
-        QtMvvmApp10.qml \
         PresentingStackView.qml \
-        PresentingStackView10.qml \
         PresenterProgress.qml \
         PopupPresenter.qml \
-        PopupPresenter10.qml \
         DialogPresenter.qml \
-        DialogPresenter10.qml \
         TintIcon.qml \
         AlertDialog.qml \
         ContrastToolBar.qml \

@@ -5,4 +5,6 @@ namespace notes {
     {
         qDebug() << str;
     }
+
+//    QQmlApplicationEngine *g_qmlEngine;
 }

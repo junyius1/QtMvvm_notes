@@ -1,5 +1,5 @@
-import QtQuick 2.10
-import QtQuick.Controls 2.3
+import QtQuick 2.12
+import QtQuick.Controls 2.12
 
 /*! @brief A presentation helper that can present mvvm views that extend the
  * @ref QtQuick.Controls.Popup "Popup" type

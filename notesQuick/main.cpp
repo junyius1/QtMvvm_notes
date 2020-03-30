@@ -8,8 +8,11 @@
 #include "quickpresenter.h"
 #include "clipboard.h"
 #include <QQmlContext>
+#include "common.h"
 
 QTMVVM_REGISTER_CORE_APP(notesApp)
+
+using namespace notes;
 
 int main(int argc, char *argv[])
 {
@@ -31,6 +34,9 @@ int main(int argc, char *argv[])
     engine.addImportPath((QStringLiteral("../qml")));
     engine.rootContext()->setContextProperty(QLatin1String(R"(notesModel)"), NotesModel::instance());
     engine.load(QUrl(QStringLiteral("qrc:/App.qml")));
+
+//    g_qmlEngine = &engine;
+
     if (engine.rootObjects().isEmpty())
         return -1;
 

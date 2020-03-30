@@ -1,6 +1,6 @@
-import QtQuick 2.10
-import QtQuick.Controls 2.3
-import QtQuick.Window 2.2
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Window 2.12
 
 /*! @brief An extension of the @ref QtQuick.Controls.Dialog "Dialog" for better appearance
  *

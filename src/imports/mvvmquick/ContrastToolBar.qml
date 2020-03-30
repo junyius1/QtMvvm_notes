@@ -1,6 +1,6 @@
-import QtQuick 2.10
-import QtQuick.Controls 2.3
-import QtQuick.Controls.Material 2.3
+import QtQuick 2.12
+import QtQuick.Controls 2.12
+import QtQuick.Controls.Material 2.12
 import de.framework.QtMvvm.Quick 1.1
 
 /*! @brief An extension of the @ref QtQuick.Controls.ToolBar "ToolBar" for better appearance
