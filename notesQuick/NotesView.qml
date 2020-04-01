@@ -93,11 +93,13 @@ Page {
             text: viewModel.title
         }
     }
+    property var tabKeeper :[]//c++创建的component被qml gc问题，防止被删
 
     function presentTab(item) {
         tabBar.insertItem(tabBar.count - 1, _newTab.createObject(tabBar, {viewModel: item.viewModel}));
-        item.parent = swipe;
+//        item.parent = swipe;
         swipe.addItem(item);
+        tabKeeper.push(item);
         tabBar.setCurrentIndex(tabBar.count - 2);
         return true;
     }
