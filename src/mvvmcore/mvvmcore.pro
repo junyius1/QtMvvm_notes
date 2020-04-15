@@ -5,6 +5,7 @@ QT = core gui
 #TEMPLATE=lib
 #CONFIG += dll
 CONFIG += c++14
+CONFIG += git_build
 
 HEADERS += \
 	viewmodel.h \
